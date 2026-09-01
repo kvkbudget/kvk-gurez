@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Krishi Vigyan Kendra Gurez</title>
+  <meta name="description" content="Krishi Vigyan Kendra, Gurez — Empowering farmers through science, training and demonstrations under SKUAST-Kashmir & ICAR." />
+  <meta name="theme-color" content="#2D5340" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvas:  '#F6F2E8',
+            ink:     '#21302A',
+            pine:    { DEFAULT:'#2D5340', dark:'#1E3A2C', light:'#3F6B4F' },
+            walnut:  { DEFAULT:'#A06A3C', light:'#C6925F', dark:'#7A4E29' },
+            saffron: { DEFAULT:'#DD9A33', light:'#F0BB6E', dark:'#B97A1C' },
+            mist:    '#EAEFE3',
+            slate:   '#5E6D63'
+          },
+          fontFamily: {
+            display: ['"Fraunces"','serif'],
+            body:    ['"Inter"','system-ui','-apple-system','sans-serif'],
+            mono:    ['"IBM Plex Mono"','monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@600&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- GLightbox -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    html { scroll-behavior:smooth; }
+    body {
+      font-family:'Inter',system-ui,sans-serif;
+      background-color:#F6F2E8;
+      background-image:radial-gradient(circle at 1px 1px,rgba(33,48,42,0.045) 1px,transparent 0);
+      background-size:24px 24px;
+      color:#21302A;
+    }
+    .urdu{ font-family:'Noto Nastaliq Urdu',serif; font-weight:600; }
+    .card{ background:#fff; border-radius:14px; box-shadow:0 6px 22px rgba(33,48,42,0.07); border:1px solid rgba(33,48,42,0.05); }
+    .card-hover{ transition:transform .25s ease,box-shadow .25s ease; }
+    .card-hover:hover{ transform:translateY(-4px); box-shadow:0 14px 30px rgba(33,48,42,0.13); }
+    .profile-photo{ width:100px; height:100px; border-radius:9999px; object-fit:cover; border:3px solid #EAEFE3; }
+    .event-img{ width:100%; height:190px; object-fit:cover; transition:opacity .4s ease; }
+    .event-img[loading]{ opacity:0; }
+    .event-img.loaded{ opacity:1; }
+    .eyebrow{ font-family:'IBM Plex Mono',monospace; letter-spacing:.2em; }
+
+    /* ── HERO SLIDER ── */
+    #hero-slider { position:relative; overflow:hidden; height:460px; }
+    @media(min-width:768px){ #hero-slider { height:620px; } }
+    .slide { position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; transition:opacity 0.9s ease; z-index:0; }
+    .slide.active { opacity:1; z-index:1; }
+    #hero-slider .overlay { position:absolute; inset:0; background:linear-gradient(to bottom,rgba(20,35,25,.35),rgba(20,35,25,.20) 50%,rgba(20,35,25,.55)); z-index:2; pointer-events:none; }
+    #hero-slider .hero-content { position:absolute; inset:0; z-index:3; display:flex; align-items:center; justify-content:center; pointer-events:none; }
+    #hero-slider .hero-content a { pointer-events:auto; }
+    .slide-dots { position:absolute; bottom:24px; left:50%; transform:translateX(-50%); z-index:6; display:flex; gap:8px; }
+    .slide-dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.4); cursor:pointer; transition:background .3s,transform .3s; border:none; }
+    .slide-dot.active { background:#DD9A33; transform:scale(1.3); }
+
+    /* ── TICKER ── */
+    .ticker-inner{ display:inline-block; padding-left:100%; animation:ticker 38s linear infinite; white-space:nowrap; }
+    @keyframes ticker{ 0%{transform:translateX(0)} 100%{transform:translateX(-100%)} }
+
+    /* ── SOCIALS ── */
+    .socials a{ display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; border-radius:7px; color:#fff; background:rgba(255,255,255,.1); transition:all .2s; }
+    .socials a.fb:hover{ background:#3b5998; }
+    .socials a.x:hover{ background:#1da1f2; }
+    .socials a.insta:hover{ background:linear-gradient(135deg,#f58529,#dd2a7b); }
+    .socials a.wa:hover{ background:#25D366; }
+
+    /* ── GALLERY GRID ── */
+    .gallery-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; }
+    .gallery-item { position:relative; overflow:hidden; border-radius:12px; aspect-ratio:4/3; }
+    .gallery-item img { width:100%; height:100%; object-fit:cover; transition:transform .4s ease; }
+    .gallery-item:hover img { transform:scale(1.07); }
+    .gallery-overlay { position:absolute; inset:0; background:rgba(21,40,30,0); display:flex; align-items:center; justify-content:center; transition:background .3s; }
+    .gallery-item:hover .gallery-overlay { background:rgba(21,40,30,.38); }
+    .gallery-overlay i { color:#fff; font-size:1.4rem; opacity:0; transition:opacity .3s; }
+    .gallery-item:hover .gallery-overlay i { opacity:1; }
+
+    /* ── WEATHER CARD ── */
+    .weather-day { border-radius:12px; background:linear-gradient(135deg,#f0f7f2,#e8f2eb); padding:12px 8px; text-align:center; flex:1; min-width:0; }
+
+    /* ── FOCUS / A11Y ── */
+    :focus-visible{ outline:3px solid #DD9A33; outline-offset:2px; border-radius:4px; }
+
+    @media (prefers-reduced-motion:reduce){
+      *{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+      html{ scroll-behavior:auto !important; }
+    }
+
+    /* ── NAV ACTIVE ── */
+    nav a.active { color:#F0BB6E; }
+  </style>
+</head>
+<body class="font-body text-ink">
+
+<a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-saffron focus:text-ink focus:px-4 focus:py-2 focus:rounded-md focus:font-semibold">Skip to content</a>
+
+<!-- ══════════════════════════════════════════════
+     TOP BAR
+══════════════════════════════════════════════ -->
+<div class="w-full bg-pine-dark text-canvas text-xs md:text-sm">
+  <div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between gap-3">
+    <div class="flex items-center gap-4 min-w-0">
+      <a href="mailto:kvkgurez@gmail.com" class="hidden sm:inline-flex items-center gap-1.5 hover:text-saffron-light transition-colors truncate">
+        <i class="fa-solid fa-envelope fa-fw"></i> kvkgurez@gmail.com
+      </a>
+      <a href="tel:+919103862673" class="inline-flex items-center gap-1.5 hover:text-saffron-light transition-colors">
+        <i class="fa-solid fa-phone fa-fw"></i> +91-9103862673
+      </a>
+    </div>
+    <div class="socials flex items-center gap-1.5 shrink-0">
+      <a class="fb" href="https://www.facebook.com/share/16b3eGk4LZ/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a class="x"  href="https://twitter.com/gurezkvk"       target="_blank" rel="noopener noreferrer" aria-label="X / Twitter"><i class="fab fa-x-twitter"></i></a>
+      <a class="insta" href="https://www.instagram.com/kvkgurez?igsh=d3FycGg4NWYyNDVn" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a class="wa" href="https://wa.me/919103862673"         target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════════ -->
+<header class="bg-pine text-canvas sticky top-0 z-50 shadow-lg">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-3">
+
+    <!-- SKUAST logo -->
+    <img src="images/Skuastklogo.jpg" alt="SKUAST-K logo"
+         class="h-14 md:h-20 w-auto bg-white p-1 rounded-lg shadow shrink-0"
+         onerror="this.style.display='none'">
+
+    <!-- Centre: title block -->
+    <div class="flex-1 text-center min-w-0 px-2">
+      <p class="urdu text-base md:text-xl leading-snug" lang="ur" dir="rtl">کرشی وگیان کیندر، گریز</p>
+      <h1 class="font-display text-base md:text-2xl font-bold uppercase leading-tight tracking-widest">
+        Krishi Vigyan Kendra <span class="text-saffron-light">Gurez</span>
+      </h1>
+      <p class="text-[10px] md:text-xs text-canvas/70 font-mono mt-0.5 tracking-widest">SKUAST-Kashmir &bull; ICAR</p>
+    </div>
+
+    <!-- ICAR logo + hamburger -->
+    <div class="flex items-center gap-2 shrink-0">
+      <img src="images/Icarlogo.png" alt="ICAR logo"
+           class="h-14 md:h-20 w-auto bg-white p-1 rounded-lg shadow"
+           onerror="this.style.display='none'">
+      <button id="nav-toggle"
+              class="md:hidden w-10 h-10 inline-flex items-center justify-center rounded-md hover:bg-white/10 transition-colors"
+              aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+        <i class="fa-solid fa-bars text-xl" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav id="nav-links" class="hidden md:block bg-pine-dark border-t border-white/10">
+    <ul class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row md:flex-wrap gap-x-5 gap-y-0 py-1 md:py-2 text-xs font-bold uppercase tracking-widest">
+      <li><a href="#home"         class="block py-2.5 md:py-1.5 hover:text-saffron-light transition-colors">Home</a></li>
+      <li><a href="#about"        class="block py-2.5 md:py-1.5 hover:text-saffron-light transition-colors">About</a></li>
+      <li><a href="#leadership"   class="block py-2.5 md:py-1.5 hover:text-saffron-light transition-colors">Leadership</a></li>
+      <li><a href="#activities"   class="block py-2.5 md:py-1.5 hover:text-saffron-light transition-colors">Activities</a></li>
+      <li><a href="#oft"         class="block py-2.5 md:py-1.5 hover:text-saffron-light transition-colors">OFT</a></li>
+      <li><a href="#fld"         class="block py-2.5 md:py-1.5 hover:text-saffron-light transition-colors">FLD</a></li>
+      <li><a href="#events"       class="block py-2.5 md:py-1.5 hover:text-saffron-light transition-colors">Events</a></li>
+      <li><a href="#staff"        class="block py-2.5 md:py-1.5 hover:text-saffron-light transition-colors">Team</a></li>
+      <li><a href="#publications" class="block py-2.5 md:py-1.5 hover:text-saffron-light transition-colors">Publications</a></li>
+      <li><a href="#gallery"      class="block py-2.5 md:py-1.5 hover:text-saffron-light transition-colors">Gallery</a></li>
+      <li><a href="#weather"      class="block py-2.5 md:py-1.5 hover:text-saffron-light transition-colors">Weather</a></li>
+      <li><a href="#contact"      class="block py-2.5 md:py-1.5 hover:text-saffron-light transition-colors">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ══════════════════════════════════════════════
+     HERO SLIDER
+══════════════════════════════════════════════ -->
+<section id="home">
+  <div id="hero-slider" class="text-white">
+
+    <!-- Slides (KVK building / Gurez valley / farming scenes) -->
+    <div class="slide active" style="background-image:url('images/t1.jpeg')"></div>
+    <div class="slide"        style="background-image:url('images/kz1.jpeg')"></div>
+    <div class="slide"        style="background-image:url('images/L1.jpeg')"></div>
+    <div class="slide"        style="background-image:url('images/field1.jpeg')"></div>
+    <div class="slide"        style="background-image:url('images/polyh1.jpeg')"></div>
+
+    <div class="overlay"></div>
+
+    <!-- Text overlay -->
+    <div class="hero-content"><div class="text-center max-w-3xl px-4">
+      <p class="eyebrow text-[11px] md:text-xs uppercase text-saffron-light mb-4 tracking-widest">SKUAST-Kashmir &middot; ICAR &middot; Gurez Valley</p>
+      <h2 class="font-display text-3xl sm:text-4xl md:text-6xl font-semibold leading-tight drop-shadow-lg">
+        Empowering Farmers<br class="hidden sm:block">
+        <span class="text-saffron-light">Through Science</span>
+      </h2>
+      <p class="mt-5 text-base md:text-lg text-white/85 max-w-xl mx-auto">
+        Field demonstrations, training and applied research strengthening high-altitude agriculture across the Gurez Valley.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+        <a href="#about"   class="px-6 py-3 rounded-full bg-saffron text-ink font-bold hover:bg-saffron-light transition-colors shadow">Learn more</a>
+        <a href="#contact" class="px-6 py-3 rounded-full ring-2 ring-white/40 hover:bg-white/10 transition-colors font-semibold">Get in touch</a>
+      </div>
+    </div></div><!-- /hero-content -->
+
+
+    <!-- Slide dots -->
+    <div class="slide-dots" role="tablist" aria-label="Hero slides"></div>
+
+    <!-- Prev / Next arrows -->
+    <button id="slide-prev" aria-label="Previous slide"
+            style="z-index:7" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/30 hover:bg-black/50 flex items-center justify-center transition-colors">
+      <i class="fa-solid fa-chevron-left text-white" aria-hidden="true"></i>
+    </button>
+    <button id="slide-next" aria-label="Next slide"
+            style="z-index:7" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/30 hover:bg-black/50 flex items-center justify-center transition-colors">
+      <i class="fa-solid fa-chevron-right text-white" aria-hidden="true"></i>
+    </button>
+
+    <!-- Ridge line -->
+    <div class="absolute bottom-0 left-0 w-full z-10 leading-[0]" aria-hidden="true">
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none" class="w-full h-10 md:h-16 block">
+        <path d="M0,55 L160,18 L320,62 L480,8 L640,50 L800,20 L960,58 L1120,12 L1280,45 L1440,25 L1440,90 L0,90 Z" fill="#3F6B4F" opacity=".5"/>
+        <path d="M0,72 L180,36 L340,78 L520,25 L700,68 L880,30 L1060,72 L1240,35 L1440,62 L1440,90 L0,90 Z" fill="#F6F2E8"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     NOTICE TICKER
+══════════════════════════════════════════════ -->
+<div class="bg-canvas border-b border-walnut/20">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row sm:items-center gap-2">
+    <span class="inline-flex items-center gap-2 eyebrow text-[11px] uppercase text-walnut shrink-0">
+      <i class="fa-solid fa-bullhorn" aria-hidden="true"></i> Notices
+    </span>
+    <div class="overflow-hidden flex-1 sm:border-l sm:border-walnut/20 sm:pl-4">
+      <div id="notice-ticker" class="ticker-inner text-sm text-ink/80"></div>
+    </div>
+    <span class="hidden md:inline text-xs text-slate font-mono shrink-0">Updated <span id="news-updated"></span></span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════════════ -->
+<main id="main" class="max-w-7xl mx-auto px-4 py-12 md:py-16 space-y-20 md:space-y-28">
+
+  <!-- ── ABOUT ── -->
+  <section id="about" data-aos="fade-up">
+    <div class="flex items-center gap-3 mb-3">
+      <span class="eyebrow text-[11px] text-walnut">01 — ABOUT</span>
+      <span class="flex-1 h-px bg-walnut/25"></span>
+    </div>
+    <h3 class="font-display text-2xl md:text-4xl font-semibold mb-5">About KVK Gurez</h3>
+    <div class="card p-6 md:p-8 grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <p class="text-slate leading-relaxed mb-4">
+          Krishi Vigyan Kendra (KVK) Gurez functions under <strong class="text-ink">SKUAST-Kashmir</strong> and <strong class="text-ink">ICAR</strong>.
+          Located in the high-altitude Gurez Valley, we bridge the gap between agricultural research and ground-level farming practice
+          through on-farm trials, technology demonstrations and skill-based capacity building.
+        </p>
+        <p class="text-slate leading-relaxed">
+          Our mandate covers crop production, horticulture, livestock management, agroforestry and natural resource management —
+          all calibrated for the unique cold-climate, short-season conditions of Kashmir's northern highlands.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="card p-4 text-center border border-pine/10">
+          <p class="font-display text-3xl font-bold text-pine">500+</p>
+          <p class="text-xs text-slate mt-1 uppercase tracking-wide">Farmers Trained</p>
+        </div>
+        <div class="card p-4 text-center border border-pine/10">
+          <p class="font-display text-3xl font-bold text-pine">30+</p>
+          <p class="text-xs text-slate mt-1 uppercase tracking-wide">Demos Conducted</p>
+        </div>
+        <div class="card p-4 text-center border border-pine/10">
+          <p class="font-display text-3xl font-bold text-pine">12+</p>
+          <p class="text-xs text-slate mt-1 uppercase tracking-wide">Villages Covered</p>
+        </div>
+        <div class="card p-4 text-center border border-pine/10">
+          <p class="font-display text-3xl font-bold text-pine">8</p>
+          <p class="text-xs text-slate mt-1 uppercase tracking-wide">Technical Staff</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── LEADERSHIP (NEW) ── -->
+  <section id="leadership" data-aos="fade-up">
+    <div class="flex items-center gap-3 mb-3">
+      <span class="eyebrow text-[11px] text-walnut">02 — LEADERSHIP</span>
+      <span class="flex-1 h-px bg-walnut/25"></span>
+    </div>
+    <h3 class="font-display text-2xl md:text-4xl font-semibold mb-6">University Leadership</h3>
+    <div class="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+
+      <!-- VC SKUAST-K -->
+      <div class="card card-hover p-6 text-center">
+        <div class="relative inline-block mb-4">
+          <img src="images/hvcsir.jpg"
+               alt="Hon'ble Vice Chancellor, SKUAST-Kashmir (dummy photo)"
+               class="profile-photo mx-auto">
+          <span class="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-pine flex items-center justify-center shadow">
+            <i class="fa-solid fa-graduation-cap text-white text-xs" aria-hidden="true"></i>
+          </span>
+        </div>
+        <h4 class="font-display font-bold text-lg">Prof. (Dr.) Nazir Ahmad Ganai</h4>
+        <p class="text-xs font-bold uppercase tracking-wide text-walnut mt-1">Hon'ble Vice Chancellor</p>
+        <p class="text-xs text-slate mt-1">SKUAST-Kashmir</p>
+        <p class="text-xs text-slate mt-3 leading-relaxed italic">
+          Providing visionary leadership to SKUAST-Kashmir in advancing agricultural education, research and extension for the benefit of farming communities across J&amp;K.
+        </p>
+      </div>
+
+      <!-- Director Extension -->
+      <div class="card card-hover p-6 text-center">
+        <div class="relative inline-block mb-4">
+          <img src="images/deemam.jpg"
+               alt="Director of Extension, SKUAST-Kashmir (dummy photo)"
+               class="profile-photo mx-auto">
+          <span class="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-walnut flex items-center justify-center shadow">
+            <i class="fa-solid fa-seedling text-white text-xs" aria-hidden="true"></i>
+          </span>
+        </div>
+        <h4 class="font-display font-bold text-lg">Prof. (Dr.) Raihana Habib Kanth</h4>
+        <p class="text-xs font-bold uppercase tracking-wide text-walnut mt-1">Director of Extension</p>
+        <p class="text-xs text-slate mt-1">SKUAST-Kashmir</p>
+        <p class="text-xs text-slate mt-3 leading-relaxed italic">
+          Overseeing and coordinating all extension education programmes, KVK activities and farmer outreach initiatives across SKUAST-Kashmir's network.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── ACTIVITIES ── -->
+  <section id="activities" data-aos="fade-up">
+    <div class="flex items-center gap-3 mb-3">
+      <span class="eyebrow text-[11px] text-walnut">03 — ACTIVITIES</span>
+      <span class="flex-1 h-px bg-walnut/25"></span>
+    </div>
+    <h3 class="font-display text-2xl md:text-4xl font-semibold mb-6">Major Activities</h3>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div class="card card-hover p-6">
+        <div class="w-12 h-12 rounded-full bg-mist text-pine flex items-center justify-center text-xl mb-4">
+          <i class="fa-solid fa-flask" aria-hidden="true"></i>
+        </div>
+        <h4 class="font-display text-lg font-semibold">Tulip Cultivation</h4>
+        <p class="text-slate mt-2 text-sm leading-relaxed">Promotion of tulip cultivation as a high-value enterprise in Gurez Valley.</p>
+      </div>
+      <div class="card card-hover p-6">
+        <div class="w-12 h-12 rounded-full bg-mist text-pine flex items-center justify-center text-xl mb-4">
+          <i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i>
+        </div>
+        <h4 class="font-display text-lg font-semibold">Farmer Trainings & Capacity Building</h4>
+        <p class="text-slate mt-2 text-sm leading-relaxed">Skill-building sessions on nursery raising, IPM, post-harvest handling and livestock care.</p>
+      </div>
+      <div class="card card-hover p-6">
+        <div class="w-12 h-12 rounded-full bg-mist text-pine flex items-center justify-center text-xl mb-4">
+          <i class="fa-solid fa-bullhorn" aria-hidden="true"></i>
+        </div>
+        <h4 class="font-display text-lg font-semibold">Gurezi Kala Zeera Revival &amp; Conservation</h4>
+        <p class="text-slate mt-2 text-sm leading-relaxed">Revival, conservation and promotion of indigenous Gurezi Kala Zeera through scientific and organic cultivation practices.</p>
+      </div>
+      <div class="card card-hover p-6">
+        <div class="w-12 h-12 rounded-full bg-mist text-pine flex items-center justify-center text-xl mb-4">
+          <i class="fa-solid fa-leaf" aria-hidden="true"></i>
+        </div>
+        <h4 class="font-display text-lg font-semibold">MAPs Cultivation & Conservation</h4>
+        <p class="text-slate mt-2 text-sm leading-relaxed">Promotion of medicinal &amp; aromatic plants and sustainable agroforestry systems.</p>
+      </div>
+      <div class="card card-hover p-6">
+        <div class="w-12 h-12 rounded-full bg-mist text-pine flex items-center justify-center text-xl mb-4">
+          <i class="fa-solid fa-cow" aria-hidden="true"></i>
+        </div>
+        <h4 class="font-display text-lg font-semibold">Livestock Management</h4>
+        <p class="text-slate mt-2 text-sm leading-relaxed">Animal health camps, nutrition advisory and breed improvement support for smallholders.</p>
+      </div>
+      <div class="card card-hover p-6">
+        <div class="w-12 h-12 rounded-full bg-mist text-pine flex items-center justify-center text-xl mb-4">
+          <i class="fa-solid fa-droplet" aria-hidden="true"></i>
+        </div>
+        <h4 class="font-display text-lg font-semibold">Soil &amp; Water Health</h4>
+        <p class="text-slate mt-2 text-sm leading-relaxed">Soil testing, composting, and watershed-level conservation advisory for farming families.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ON-FARM TRIALS (OFT) ── -->
+  <section id="oft" data-aos="fade-up">
+    <div class="flex items-center gap-3 mb-3">
+      <span class="eyebrow text-[11px] text-walnut">04 — OFT</span>
+      <span class="flex-1 h-px bg-walnut/25"></span>
+    </div>
+    <h3 class="font-display text-2xl md:text-4xl font-semibold mb-2">On-Farm Trials (OFT)</h3>
+    <p class="text-slate text-sm mb-6 max-w-2xl">
+      On-Farm Trials are conducted directly on farmers' fields to evaluate and validate improved technologies under actual agro-climatic conditions of Gurez Valley. They bridge laboratory findings with real-world farming practice.
+    </p>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+      <div class="card card-hover overflow-hidden">
+        <div class="relative h-44 bg-mist overflow-hidden">
+          <img src="images/oft_maize.jpg" alt="OFT on maize varieties"
+               class="w-full h-full object-cover"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div style="display:none" class="w-full h-full items-center justify-center bg-mist text-pine text-4xl">
+            <i class="fa-solid fa-seedling"></i>
+          </div>
+        </div>
+        <div class="p-5">
+          <span class="inline-block text-[10px] eyebrow uppercase text-walnut mb-2">Crop Science</span>
+          <h4 class="font-display font-semibold text-lg">Maize Variety Trial</h4>
+          <p class="text-sm text-slate mt-1 leading-relaxed">Evaluation of improved maize varieties for yield, maturity and adaptability under Gurez's short growing season.</p>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <span class="px-2 py-0.5 rounded-full bg-pine/10 text-pine text-[10px] font-mono">Yield assessment</span>
+            <span class="px-2 py-0.5 rounded-full bg-pine/10 text-pine text-[10px] font-mono">Maturity index</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-hover overflow-hidden">
+        <div class="relative h-44 bg-mist overflow-hidden">
+          <img src="images/oft_fodder.jpg" alt="OFT on fodder crops"
+               class="w-full h-full object-cover"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div style="display:none" class="w-full h-full items-center justify-center bg-mist text-pine text-4xl">
+            <i class="fa-solid fa-wheat-awn"></i>
+          </div>
+        </div>
+        <div class="p-5">
+          <span class="inline-block text-[10px] eyebrow uppercase text-walnut mb-2">Fodder</span>
+          <h4 class="font-display font-semibold text-lg">Fodder Crop Trial</h4>
+          <p class="text-sm text-slate mt-1 leading-relaxed">Testing high-biomass fodder varieties suited to cold altitudes for improved livestock feed availability through winter.</p>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <span class="px-2 py-0.5 rounded-full bg-pine/10 text-pine text-[10px] font-mono">Biomass yield</span>
+            <span class="px-2 py-0.5 rounded-full bg-pine/10 text-pine text-[10px] font-mono">Cold tolerance</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-hover overflow-hidden">
+        <div class="relative h-44 bg-mist overflow-hidden">
+          <img src="images/oft_vegetable.jpg" alt="OFT on vegetable crops"
+               class="w-full h-full object-cover"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div style="display:none" class="w-full h-full items-center justify-center bg-mist text-pine text-4xl">
+            <i class="fa-solid fa-carrot"></i>
+          </div>
+        </div>
+        <div class="p-5">
+          <span class="inline-block text-[10px] eyebrow uppercase text-walnut mb-2">Horticulture</span>
+          <h4 class="font-display font-semibold text-lg">Vegetable Variety Trial</h4>
+          <p class="text-sm text-slate mt-1 leading-relaxed">On-farm screening of improved vegetable varieties for local agro-climatic suitability and marketability in Gurez.</p>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <span class="px-2 py-0.5 rounded-full bg-pine/10 text-pine text-[10px] font-mono">Yield</span>
+            <span class="px-2 py-0.5 rounded-full bg-pine/10 text-pine text-[10px] font-mono">Marketability</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-hover overflow-hidden">
+        <div class="relative h-44 bg-mist overflow-hidden">
+          <img src="images/oft_pulse.jpg" alt="OFT on pulses"
+               class="w-full h-full object-cover"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div style="display:none" class="w-full h-full items-center justify-center bg-mist text-pine text-4xl">
+            <i class="fa-solid fa-circle-dot"></i>
+          </div>
+        </div>
+        <div class="p-5">
+          <span class="inline-block text-[10px] eyebrow uppercase text-walnut mb-2">Pulses</span>
+          <h4 class="font-display font-semibold text-lg">Pulse Crop Evaluation</h4>
+          <p class="text-sm text-slate mt-1 leading-relaxed">Comparative study of lentil and pea varieties to identify best performers for high-altitude nitrogen fixation and food security.</p>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <span class="px-2 py-0.5 rounded-full bg-pine/10 text-pine text-[10px] font-mono">N-fixation</span>
+            <span class="px-2 py-0.5 rounded-full bg-pine/10 text-pine text-[10px] font-mono">Protein yield</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-hover overflow-hidden">
+        <div class="relative h-44 bg-mist overflow-hidden">
+          <img src="images/oft_map.jpg" alt="OFT on medicinal plants"
+               class="w-full h-full object-cover"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div style="display:none" class="w-full h-full items-center justify-center bg-mist text-pine text-4xl">
+            <i class="fa-solid fa-leaf"></i>
+          </div>
+        </div>
+        <div class="p-5">
+          <span class="inline-block text-[10px] eyebrow uppercase text-walnut mb-2">MAPs</span>
+          <h4 class="font-display font-semibold text-lg">Medicinal Plant Trial</h4>
+          <p class="text-sm text-slate mt-1 leading-relaxed">Trials on saffron, lavender and other medicinal &amp; aromatic plants as alternate income sources for Gurez farmers.</p>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <span class="px-2 py-0.5 rounded-full bg-pine/10 text-pine text-[10px] font-mono">Saffron</span>
+            <span class="px-2 py-0.5 rounded-full bg-pine/10 text-pine text-[10px] font-mono">Lavender</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-hover overflow-hidden">
+        <div class="relative h-44 bg-mist overflow-hidden">
+          <img src="images/oft_livestock.jpg" alt="OFT on animal science"
+               class="w-full h-full object-cover"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div style="display:none" class="w-full h-full items-center justify-center bg-mist text-pine text-4xl">
+            <i class="fa-solid fa-cow"></i>
+          </div>
+        </div>
+        <div class="p-5">
+          <span class="inline-block text-[10px] eyebrow uppercase text-walnut mb-2">Animal Science</span>
+          <h4 class="font-display font-semibold text-lg">Feed Supplement Trial</h4>
+          <p class="text-sm text-slate mt-1 leading-relaxed">Evaluation of improved feeding practices and mineral supplements for enhanced milk yield and livestock health in winter.</p>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <span class="px-2 py-0.5 rounded-full bg-pine/10 text-pine text-[10px] font-mono">Milk yield</span>
+            <span class="px-2 py-0.5 rounded-full bg-pine/10 text-pine text-[10px] font-mono">Body weight</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── FRONT LINE DEMONSTRATIONS (FLD) ── -->
+  <section id="fld" data-aos="fade-up">
+    <div class="flex items-center gap-3 mb-3">
+      <span class="eyebrow text-[11px] text-walnut">05 — FLD</span>
+      <span class="flex-1 h-px bg-walnut/25"></span>
+    </div>
+    <h3 class="font-display text-2xl md:text-4xl font-semibold mb-2">Front Line Demonstrations (FLD)</h3>
+    <p class="text-slate text-sm mb-6 max-w-2xl">
+      Front Line Demonstrations are conducted on farmers' fields under direct supervision of KVK scientists to showcase the yield and income advantage of improved technologies over existing local practices. FLDs create visible proof for neighbouring farmers.
+    </p>
+
+    <!-- FLD Summary Stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+      <div class="card p-4 text-center border border-pine/10">
+        <p class="font-display text-3xl font-bold text-pine">30+</p>
+        <p class="text-xs text-slate mt-1 uppercase tracking-wide eyebrow">FLDs Conducted</p>
+      </div>
+      <div class="card p-4 text-center border border-pine/10">
+        <p class="font-display text-3xl font-bold text-pine">6</p>
+        <p class="text-xs text-slate mt-1 uppercase tracking-wide eyebrow">Crop Enterprises</p>
+      </div>
+      <div class="card p-4 text-center border border-pine/10">
+        <p class="font-display text-3xl font-bold text-pine">12+</p>
+        <p class="text-xs text-slate mt-1 uppercase tracking-wide eyebrow">Villages Covered</p>
+      </div>
+      <div class="card p-4 text-center border border-pine/10">
+        <p class="font-display text-3xl font-bold text-pine">200+</p>
+        <p class="text-xs text-slate mt-1 uppercase tracking-wide eyebrow">Farmers Reached</p>
+      </div>
+    </div>
+
+    <!-- FLD Cards -->
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+      <div class="card card-hover overflow-hidden">
+        <div class="relative h-44 bg-mist overflow-hidden">
+          <img src="images/fld_maize.jpg" alt="FLD on maize"
+               class="w-full h-full object-cover"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div style="display:none" class="w-full h-full items-center justify-center bg-mist text-pine text-4xl">
+            <i class="fa-solid fa-seedling"></i>
+          </div>
+        </div>
+        <div class="p-5">
+          <div class="flex items-center justify-between mb-1">
+            <span class="inline-block text-[10px] eyebrow uppercase text-walnut">FLD — Maize</span>
+            <span class="text-[10px] font-mono bg-saffron/15 text-walnut-dark px-2 py-0.5 rounded-full">Kharif</span>
+          </div>
+          <h4 class="font-display font-semibold text-lg mt-1">Improved Maize Cultivation</h4>
+          <p class="text-sm text-slate mt-1 leading-relaxed">Demonstration of hybrid maize varieties with recommended package of practices — seed treatment, spacing and fertiliser schedule.</p>
+          <div class="mt-3 pt-3 border-t border-slate/10 flex items-center justify-between text-xs text-slate">
+            <span><i class="fa-solid fa-location-dot text-walnut mr-1"></i>Dawar, Gurez</span>
+            <span><i class="fa-solid fa-users text-pine mr-1"></i>40+ farmers</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-hover overflow-hidden">
+        <div class="relative h-44 bg-mist overflow-hidden">
+          <img src="images/fld_tulip.jpg" alt="FLD on tulip cultivation"
+               class="w-full h-full object-cover"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div style="display:none" class="w-full h-full items-center justify-center bg-mist text-pine text-4xl">
+            <i class="fa-solid fa-fan"></i>
+          </div>
+        </div>
+        <div class="p-5">
+          <div class="flex items-center justify-between mb-1">
+            <span class="inline-block text-[10px] eyebrow uppercase text-walnut">FLD — Floriculture</span>
+            <span class="text-[10px] font-mono bg-saffron/15 text-walnut-dark px-2 py-0.5 rounded-full">Spring</span>
+          </div>
+          <h4 class="font-display font-semibold text-lg mt-1">Tulip Cultivation</h4>
+          <p class="text-sm text-slate mt-1 leading-relaxed">Front line demonstration of commercial tulip cultivation as a high-value income opportunity for Gurez Valley farmers.</p>
+          <div class="mt-3 pt-3 border-t border-slate/10 flex items-center justify-between text-xs text-slate">
+            <span><i class="fa-solid fa-location-dot text-walnut mr-1"></i>Gurez Valley</span>
+            <span><i class="fa-solid fa-users text-pine mr-1"></i>25+ farmers</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-hover overflow-hidden">
+        <div class="relative h-44 bg-mist overflow-hidden">
+          <img src="images/fld_fodder.jpg" alt="FLD on fodder"
+               class="w-full h-full object-cover"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div style="display:none" class="w-full h-full items-center justify-center bg-mist text-pine text-4xl">
+            <i class="fa-solid fa-wheat-awn"></i>
+          </div>
+        </div>
+        <div class="p-5">
+          <div class="flex items-center justify-between mb-1">
+            <span class="inline-block text-[10px] eyebrow uppercase text-walnut">FLD — Fodder</span>
+            <span class="text-[10px] font-mono bg-saffron/15 text-walnut-dark px-2 py-0.5 rounded-full">Kharif</span>
+          </div>
+          <h4 class="font-display font-semibold text-lg mt-1">High-Yield Fodder Demo</h4>
+          <p class="text-sm text-slate mt-1 leading-relaxed">Demonstration of improved fodder varieties to address the critical winter feed shortage for livestock in the Gurez Valley.</p>
+          <div class="mt-3 pt-3 border-t border-slate/10 flex items-center justify-between text-xs text-slate">
+            <span><i class="fa-solid fa-location-dot text-walnut mr-1"></i>Multiple villages</span>
+            <span><i class="fa-solid fa-users text-pine mr-1"></i>50+ farmers</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-hover overflow-hidden">
+        <div class="relative h-44 bg-mist overflow-hidden">
+          <img src="images/fld_vegetable.jpg" alt="FLD on vegetables"
+               class="w-full h-full object-cover"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div style="display:none" class="w-full h-full items-center justify-center bg-mist text-pine text-4xl">
+            <i class="fa-solid fa-carrot"></i>
+          </div>
+        </div>
+        <div class="p-5">
+          <div class="flex items-center justify-between mb-1">
+            <span class="inline-block text-[10px] eyebrow uppercase text-walnut">FLD — Vegetables</span>
+            <span class="text-[10px] font-mono bg-saffron/15 text-walnut-dark px-2 py-0.5 rounded-full">Summer</span>
+          </div>
+          <h4 class="font-display font-semibold text-lg mt-1">Vegetable Production Demo</h4>
+          <p class="text-sm text-slate mt-1 leading-relaxed">Showcasing improved vegetable cultivation with polyhouse technology for extended season production in cold conditions.</p>
+          <div class="mt-3 pt-3 border-t border-slate/10 flex items-center justify-between text-xs text-slate">
+            <span><i class="fa-solid fa-location-dot text-walnut mr-1"></i>Tulail, Gurez</span>
+            <span><i class="fa-solid fa-users text-pine mr-1"></i>35+ farmers</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-hover overflow-hidden">
+        <div class="relative h-44 bg-mist overflow-hidden">
+          <img src="images/fld_map.jpg" alt="FLD on medicinal plants"
+               class="w-full h-full object-cover"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div style="display:none" class="w-full h-full items-center justify-center bg-mist text-pine text-4xl">
+            <i class="fa-solid fa-leaf"></i>
+          </div>
+        </div>
+        <div class="p-5">
+          <div class="flex items-center justify-between mb-1">
+            <span class="inline-block text-[10px] eyebrow uppercase text-walnut">FLD — MAPs</span>
+            <span class="text-[10px] font-mono bg-saffron/15 text-walnut-dark px-2 py-0.5 rounded-full">Perennial</span>
+          </div>
+          <h4 class="font-display font-semibold text-lg mt-1">Medicinal Plant Demo</h4>
+          <p class="text-sm text-slate mt-1 leading-relaxed">Demonstration plots of lavender, saffron and other high-value MAPs for alternate livelihoods and forest conservation.</p>
+          <div class="mt-3 pt-3 border-t border-slate/10 flex items-center justify-between text-xs text-slate">
+            <span><i class="fa-solid fa-location-dot text-walnut mr-1"></i>Gurez Valley</span>
+            <span><i class="fa-solid fa-users text-pine mr-1"></i>30+ farmers</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-hover overflow-hidden">
+        <div class="relative h-44 bg-mist overflow-hidden">
+          <img src="images/fld_livestock.jpg" alt="FLD on livestock"
+               class="w-full h-full object-cover"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div style="display:none" class="w-full h-full items-center justify-center bg-mist text-pine text-4xl">
+            <i class="fa-solid fa-cow"></i>
+          </div>
+        </div>
+        <div class="p-5">
+          <div class="flex items-center justify-between mb-1">
+            <span class="inline-block text-[10px] eyebrow uppercase text-walnut">FLD — Livestock</span>
+            <span class="text-[10px] font-mono bg-saffron/15 text-walnut-dark px-2 py-0.5 rounded-full">Year-round</span>
+          </div>
+          <h4 class="font-display font-semibold text-lg mt-1">Improved Livestock Practices</h4>
+          <p class="text-sm text-slate mt-1 leading-relaxed">Demo of scientific animal management — balanced rations, deworming schedules, and housing improvement for cold climates.</p>
+          <div class="mt-3 pt-3 border-t border-slate/10 flex items-center justify-between text-xs text-slate">
+            <span><i class="fa-solid fa-location-dot text-walnut mr-1"></i>Multiple villages</span>
+            <span><i class="fa-solid fa-users text-pine mr-1"></i>45+ farmers</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ── EVENTS ── -->
+  <section id="events" data-aos="fade-up">
+    <div class="flex items-center gap-3 mb-3">
+      <span class="eyebrow text-[11px] text-walnut">06 — EVENTS</span>
+      <span class="flex-1 h-px bg-walnut/25"></span>
+    </div>
+    <h3 class="font-display text-2xl md:text-4xl font-semibold mb-6">Events, Trainings &amp; Demonstrations</h3>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <article class="card card-hover overflow-hidden">
+        <img class="event-img" src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=900&auto=format&fit=crop" alt="Farmers at a nursery training">
+        <div class="p-5">
+          <span class="inline-block text-[10px] eyebrow uppercase text-walnut mb-2">Training</span>
+          <h4 class="font-display font-semibold text-lg">Nursery Management</h4>
+          <p class="text-sm text-slate mt-1">Hands-on session on raising healthy nursery beds and seedling management.</p>
+        </div>
+      </article>
+      <article class="card card-hover overflow-hidden">
+        <img class="event-img" src="https://images.unsplash.com/photo-1520975918233-2e9a9bce3d7b?q=80&w=900&auto=format&fit=crop" alt="Fodder demonstration plot">
+        <div class="p-5">
+          <span class="inline-block text-[10px] eyebrow uppercase text-walnut mb-2">Demonstration</span>
+          <h4 class="font-display font-semibold text-lg">Fodder Production</h4>
+          <p class="text-sm text-slate mt-1">On-site demonstration of high-yield fodder varieties and their management.</p>
+        </div>
+      </article>
+      <article class="card card-hover overflow-hidden">
+        <img class="event-img" src="https://images.unsplash.com/photo-1602524816994-d65df85dee0f?q=80&w=900&auto=format&fit=crop" alt="Kisan Mela gathering">
+        <div class="p-5">
+          <span class="inline-block text-[10px] eyebrow uppercase text-walnut mb-2">Outreach</span>
+          <h4 class="font-display font-semibold text-lg">Kisan Mela</h4>
+          <p class="text-sm text-slate mt-1">Community mela connecting farmers with extension services and quality inputs.</p>
+        </div>
+      </article>
+      <article class="card card-hover overflow-hidden">
+        <img class="event-img" src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?q=80&w=900&auto=format&fit=crop" alt="Maize crop demonstration">
+        <div class="p-5">
+          <span class="inline-block text-[10px] eyebrow uppercase text-walnut mb-2">Demonstration</span>
+          <h4 class="font-display font-semibold text-lg">Maize Crop Trial</h4>
+          <p class="text-sm text-slate mt-1">Evaluation of improved maize varieties under high-altitude agro-climatic conditions.</p>
+        </div>
+      </article>
+      <article class="card card-hover overflow-hidden">
+        <img class="event-img" src="https://images.unsplash.com/photo-1628352081506-83c43123ed6d?q=80&w=900&auto=format&fit=crop" alt="Animal health camp">
+        <div class="p-5">
+          <span class="inline-block text-[10px] eyebrow uppercase text-walnut mb-2">Health Camp</span>
+          <h4 class="font-display font-semibold text-lg">Livestock Health Camp</h4>
+          <p class="text-sm text-slate mt-1">Free veterinary services, vaccination and nutrition advisory for village livestock owners.</p>
+        </div>
+      </article>
+      <article class="card card-hover overflow-hidden">
+        <img class="event-img" src="https://images.unsplash.com/photo-1588392382834-a891154bca4d?q=80&w=900&auto=format&fit=crop" alt="Soil testing awareness programme">
+        <div class="p-5">
+          <span class="inline-block text-[10px] eyebrow uppercase text-walnut mb-2">Awareness</span>
+          <h4 class="font-display font-semibold text-lg">Soil Health Awareness</h4>
+          <p class="text-sm text-slate mt-1">Village-level awareness on soil health cards, organic inputs and nutrient management.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── SCIENTISTS ── -->
+  <section id="staff" data-aos="fade-up">
+    <div class="flex items-center gap-3 mb-3">
+      <span class="eyebrow text-[11px] text-walnut">07 — TEAM</span>
+      <span class="flex-1 h-px bg-walnut/25"></span>
+    </div>
+    <h3 class="font-display text-2xl md:text-4xl font-semibold mb-6">Scientists</h3>
+    <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+
+      <div class="card card-hover p-5 text-center">
+        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop&crop=face"
+             alt="Dr Hilal Ahmad Malik" class="profile-photo mx-auto">
+        <h4 class="mt-4 font-display font-semibold">Dr. Hilal Ahmad Malik</h4>
+        <p class="text-[11px] font-bold uppercase tracking-wide text-walnut mt-1">Senior Scientist &amp; Head</p>
+        <p class="text-xs text-slate mt-2 leading-relaxed">Overall leadership and strategic direction of KVK Gurez programmes.</p>
+      </div>
+
+      <div class="card card-hover p-5 text-center">
+        <img src="images/Drjauhar.png"
+             alt="Dr Jauhar Rafeeq"
+             class="profile-photo mx-auto"
+             onerror="this.src='https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400&auto=format&fit=crop&crop=face'">
+        <h4 class="mt-4 font-display font-semibold">Dr. Jauhar Rafeeq</h4>
+        <p class="text-[11px] font-bold uppercase tracking-wide text-walnut mt-1">Scientist (Agroforestry)</p>
+        <p class="text-xs text-slate mt-2 leading-relaxed">Agroforestry and medicinal &amp; aromatic plant systems for sustainable livelihoods.</p>
+      </div>
+
+      <div class="card card-hover p-5 text-center">
+        <img src="images/drshahida.jpg"
+             alt="Dr Shahida Altaf"
+             class="profile-photo mx-auto"
+             onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop&crop=face'">
+        <h4 class="mt-4 font-display font-semibold">Dr. Shahida Altaf</h4>
+        <p class="text-[11px] font-bold uppercase tracking-wide text-walnut mt-1">Scientist (Plant Protection)</p>
+        <p class="text-xs text-slate mt-2 leading-relaxed">Entomology, natural pest management, beneficial insects and organic crop protection.</p>
+      </div>
+
+      <div class="card card-hover p-5 text-center">
+        <img src="images/riyaz.jpeg"
+             alt="Dr Riyaz Ahmad Bhat" class="profile-photo mx-auto">
+        <h4 class="mt-4 font-display font-semibold">Dr. Riyaz Ahmad Bhat</h4>
+        <p class="text-[11px] font-bold uppercase tracking-wide text-walnut mt-1">Scientist (Animal Science)</p>
+        <p class="text-xs text-slate mt-2 leading-relaxed">Livestock health, nutrition and breeding for cold-climate animal productivity.</p>
+      </div>
+
+    </div>
+
+    <!-- Technical Staff -->
+    <h3 class="font-display text-xl md:text-2xl font-semibold mt-10 mb-5">Technical Staff</h3>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+      <div class="card card-hover p-5 text-center">
+        <img src="images/Tanzeer.jpeg"
+             alt="Tanzeer Hussain Khan" class="profile-photo mx-auto">
+        <h4 class="mt-4 font-display font-semibold">Tanzeer Hussain Khan</h4>
+        <p class="text-[11px] font-bold uppercase tracking-wide text-walnut mt-1">Programme Assistant (Computer)</p>
+        <p class="text-xs text-slate mt-2 leading-relaxed">ICT support, data management, digital documentation and online dissemination.</p>
+      </div>
+
+      <div class="card card-hover p-5 text-center">
+        <img src="images/ravi.jpeg"
+             alt="Ravi Kumar" class="profile-photo mx-auto">
+        <h4 class="mt-4 font-display font-semibold">Ravi Kumar</h4>
+        <p class="text-[11px] font-bold uppercase tracking-wide text-walnut mt-1">Farm Manager</p>
+        <p class="text-xs text-slate mt-2 leading-relaxed">Farm operations, on-farm demonstrations and logistical support.</p>
+      </div>
+
+      <div class="card card-hover p-5 text-center">
+        <img src="images/Manzoor.jpeg"
+             alt="Manzoor Ahmad Khatana" class="profile-photo mx-auto">
+        <h4 class="mt-4 font-display font-semibold">Manzoor Ahmad Khatana</h4>
+        <p class="text-[11px] font-bold uppercase tracking-wide text-walnut mt-1">Programme Assistant (Lab)</p>
+        <p class="text-xs text-slate mt-2 leading-relaxed">Lab analysis, sample handling and technical support during training.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── PUBLICATIONS ── -->
+  <section id="publications" data-aos="fade-up">
+    <div class="flex items-center gap-3 mb-3">
+      <span class="eyebrow text-[11px] text-walnut">08 — PUBLICATIONS</span>
+      <span class="flex-1 h-px bg-walnut/25"></span>
+    </div>
+    <h3 class="font-display text-2xl md:text-4xl font-semibold mb-6">Publications &amp; Downloads</h3>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="card card-hover p-5 flex flex-col">
+        <div class="w-10 h-10 rounded-lg bg-red-50 text-red-500 flex items-center justify-center mb-3">
+          <i class="fa-solid fa-file-pdf text-xl" aria-hidden="true"></i>
+        </div>
+        <h4 class="font-display font-semibold">Annual Report 2024-25</h4>
+        <p class="text-sm text-slate mt-1 flex-1">Summary of all activities and outcomes for 2024-25.</p>
+        <a href="#" class="mt-4 inline-flex items-center gap-2 text-pine font-semibold text-sm hover:text-pine-dark transition-colors">
+          <i class="fa-solid fa-download" aria-hidden="true"></i> Download PDF
+        </a>
+      </div>
+      <div class="card card-hover p-5 flex flex-col">
+        <div class="w-10 h-10 rounded-lg bg-red-50 text-red-500 flex items-center justify-center mb-3">
+          <i class="fa-solid fa-file-pdf text-xl" aria-hidden="true"></i>
+        </div>
+        <h4 class="font-display font-semibold">Extension Bulletin: Maize</h4>
+        <p class="text-sm text-slate mt-1 flex-1">Best practices for maize cultivation in cold-climate conditions.</p>
+        <a href="#" class="mt-4 inline-flex items-center gap-2 text-pine font-semibold text-sm hover:text-pine-dark transition-colors">
+          <i class="fa-solid fa-download" aria-hidden="true"></i> Download PDF
+        </a>
+      </div>
+      <div class="card card-hover p-5 flex flex-col">
+        <div class="w-10 h-10 rounded-lg bg-red-50 text-red-500 flex items-center justify-center mb-3">
+          <i class="fa-solid fa-file-pdf text-xl" aria-hidden="true"></i>
+        </div>
+        <h4 class="font-display font-semibold">Guidelines: Fodder Management</h4>
+        <p class="text-sm text-slate mt-1 flex-1">A practical guide for smallholder farmers on fodder cultivation.</p>
+        <a href="#" class="mt-4 inline-flex items-center gap-2 text-pine font-semibold text-sm hover:text-pine-dark transition-colors">
+          <i class="fa-solid fa-download" aria-hidden="true"></i> Download PDF
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GALLERY (12 photos) ── -->
+  <section id="gallery" data-aos="fade-up">
+    <div class="flex items-center gap-3 mb-3">
+      <span class="eyebrow text-[11px] text-walnut">09 — GALLERY</span>
+      <span class="flex-1 h-px bg-walnut/25"></span>
+    </div>
+    <h3 class="font-display text-2xl md:text-4xl font-semibold mb-6">Gallery</h3>
+
+    <!-- Filter buttons -->
+    <div class="flex flex-wrap gap-2 mb-6">
+      <button class="gallery-filter active px-4 py-1.5 rounded-full text-sm font-semibold bg-pine text-white" data-filter="all">All</button>
+      <button class="gallery-filter px-4 py-1.5 rounded-full text-sm font-semibold bg-mist text-ink hover:bg-pine hover:text-white transition-colors" data-filter="field">Field Work</button>
+      <button class="gallery-filter px-4 py-1.5 rounded-full text-sm font-semibold bg-mist text-ink hover:bg-pine hover:text-white transition-colors" data-filter="training">Trainings</button>
+      <button class="gallery-filter px-4 py-1.5 rounded-full text-sm font-semibold bg-mist text-ink hover:bg-pine hover:text-white transition-colors" data-filter="event">Events</button>
+    </div>
+
+    <div class="gallery-grid" id="gallery-grid">
+      <!-- 12 photos with data-cat tags -->
+      <a href="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=1400" class="glightbox gallery-item card" data-gallery="kvk" data-cat="training" data-title="Nursery Management Training">
+        <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=600&auto=format&fit=crop" alt="Nursery training session" loading="lazy">
+        <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></div>
+      </a>
+      <a href="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1400" class="glightbox gallery-item card" data-gallery="kvk" data-cat="field" data-title="Green field demo">
+        <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=600&auto=format&fit=crop" alt="Field demonstration" loading="lazy">
+        <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></div>
+      </a>
+      <a href="images/fw1 (1).jpeg" class="glightbox gallery-item card" data-gallery="kvk" data-cat="training" data-title="Farmer workshop">
+        <img src="https://images.unsplash.com/photo-1513451713350-dee890297c4a?q=80&w=600&auto=format&fit=crop" alt="Farmer workshop" loading="lazy">
+        <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></div>
+      </a>
+      <a href="https://images.unsplash.com/photo-1523741543316-beb7fc7023d8?q=80&w=1400" class="glightbox gallery-item card" data-gallery="kvk" data-cat="field" data-title="Mountain valley agriculture">
+        <img src="https://images.unsplash.com/photo-1523741543316-beb7fc7023d8?q=80&w=600&auto=format&fit=crop" alt="Mountain valley farming" loading="lazy">
+        <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></div>
+      </a>
+      <a href="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1400" class="glightbox gallery-item card" data-gallery="kvk" data-cat="field" data-title="Gurez Valley highlands">
+        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600&auto=format&fit=crop" alt="Valley landscape" loading="lazy">
+        <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></div>
+      </a>
+      <a href="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?q=80&w=1400" class="glightbox gallery-item card" data-gallery="kvk" data-cat="field" data-title="Maize crop trial">
+        <img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?q=80&w=600&auto=format&fit=crop" alt="Maize crop trial" loading="lazy">
+        <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></div>
+      </a>
+      <a href="https://images.unsplash.com/photo-1602524816994-d65df85dee0f?q=80&w=1400" class="glightbox gallery-item card" data-gallery="kvk" data-cat="event" data-title="Kisan Mela">
+        <img src="https://images.unsplash.com/photo-1602524816994-d65df85dee0f?q=80&w=600&auto=format&fit=crop" alt="Kisan Mela" loading="lazy">
+        <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></div>
+      </a>
+      <a href="https://images.unsplash.com/photo-1588392382834-a891154bca4d?q=80&w=1400" class="glightbox gallery-item card" data-gallery="kvk" data-cat="training" data-title="Soil health awareness">
+        <img src="https://images.unsplash.com/photo-1588392382834-a891154bca4d?q=80&w=600&auto=format&fit=crop" alt="Soil health awareness" loading="lazy">
+        <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></div>
+      </a>
+      <a href="https://images.unsplash.com/photo-1500076656116-558758c991c1?q=80&w=1400" class="glightbox gallery-item card" data-gallery="kvk" data-cat="field" data-title="Rural crop landscape">
+        <img src="https://images.unsplash.com/photo-1500076656116-558758c991c1?q=80&w=600&auto=format&fit=crop" alt="Rural crop landscape" loading="lazy">
+        <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></div>
+      </a>
+      <a href="https://images.unsplash.com/photo-1628352081506-83c43123ed6d?q=80&w=1400" class="glightbox gallery-item card" data-gallery="kvk" data-cat="event" data-title="Livestock health camp">
+        <img src="https://images.unsplash.com/photo-1628352081506-83c43123ed6d?q=80&w=600&auto=format&fit=crop" alt="Livestock health camp" loading="lazy">
+        <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></div>
+      </a>
+      <a href="https://images.unsplash.com/photo-1597773150796-e5c14ebecbf5?q=80&w=1400" class="glightbox gallery-item card" data-gallery="kvk" data-cat="field" data-title="Paddy field high altitude">
+        <img src="https://images.unsplash.com/photo-1597773150796-e5c14ebecbf5?q=80&w=600&auto=format&fit=crop" alt="Paddy field" loading="lazy">
+        <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></div>
+      </a>
+      <a href="https://images.unsplash.com/photo-1520975918233-2e9a9bce3d7b?q=80&w=1400" class="glightbox gallery-item card" data-gallery="kvk" data-cat="event" data-title="Extension field day">
+        <img src="https://images.unsplash.com/photo-1520975918233-2e9a9bce3d7b?q=80&w=600&auto=format&fit=crop" alt="Extension field day" loading="lazy">
+        <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── SUCCESS STORIES ── -->
+  <section id="stories" data-aos="fade-up">
+    <h3 class="font-display text-2xl md:text-4xl font-semibold mb-6">Success Stories</h3>
+    <div class="grid sm:grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="card card-hover p-6 text-center">
+        <i class="fa-solid fa-quote-left text-walnut text-2xl mb-3" aria-hidden="true"></i>
+        <p class="text-sm text-slate italic leading-relaxed">After attending the KVK demonstration, I adopted the improved maize variety — my yield went up considerably compared to the previous season.</p>
+        <p class="mt-4 font-display font-semibold">Ali</p>
+        <p class="text-xs text-walnut uppercase tracking-wide">Dawar, Gurez</p>
+      </div>
+      <div class="card card-hover p-6 text-center">
+        <i class="fa-solid fa-quote-left text-walnut text-2xl mb-3" aria-hidden="true"></i>
+        <p class="text-sm text-slate italic leading-relaxed">The livestock health training helped our entire village improve calf survival rates through the harsh winter months.</p>
+        <p class="mt-4 font-display font-semibold">Zarina Begum</p>
+        <p class="text-xs text-walnut uppercase tracking-wide">Gurez</p>
+      </div>
+      <div class="card card-hover p-6 text-center">
+        <i class="fa-solid fa-quote-left text-walnut text-2xl mb-3" aria-hidden="true"></i>
+        <p class="text-sm text-slate italic leading-relaxed">KVK's timely seed distribution and soil health advice helped our group get quality inputs exactly when we needed them.</p>
+        <p class="mt-4 font-display font-semibold">Fayaz Ahmad</p>
+        <p class="text-xs text-walnut uppercase tracking-wide">Bandipora</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WEATHER ── -->
+  <section id="weather" data-aos="fade-up">
+    <div class="flex items-center gap-3 mb-3">
+      <span class="eyebrow text-[11px] text-walnut">10 — WEATHER</span>
+      <span class="flex-1 h-px bg-walnut/25"></span>
+    </div>
+    <h3 class="font-display text-2xl md:text-4xl font-semibold mb-2">Live Weather — Gurez Valley</h3>
+    <p class="text-slate text-sm mb-6">Real-time data from Open-Meteo · Auto-refreshes every 30 min</p>
+
+    <!-- Top row: current + today detail + refresh -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+
+      <!-- Big current temp -->
+      <div id="w-current" class="card p-6 flex flex-col items-center justify-center text-center gap-1 min-h-[180px] lg:col-span-1">
+        <div class="eyebrow text-[10px] text-walnut animate-pulse" id="w-loading">Loading…</div>
+      </div>
+
+      <!-- Today detail stats -->
+      <div id="w-detail" class="card p-5 lg:col-span-1 flex flex-col justify-center gap-3 min-h-[180px]">
+        <p class="eyebrow text-[10px] text-walnut">TODAY'S DETAIL</p>
+        <div id="w-stats" class="grid grid-cols-2 gap-2 text-xs text-slate"></div>
+      </div>
+
+      <!-- 7-day mini cards -->
+      <div class="card p-4 lg:col-span-2">
+        <div class="flex items-center justify-between mb-3">
+          <p class="eyebrow text-[10px] text-walnut">7-DAY FORECAST</p>
+          <button id="w-refresh" onclick="fetchWeather()" title="Refresh weather"
+                  class="w-7 h-7 rounded-full bg-mist hover:bg-pine hover:text-white text-pine flex items-center justify-center transition-colors text-xs">
+            <i class="fa-solid fa-rotate-right"></i>
+          </button>
+        </div>
+        <div id="forecast-days" class="flex gap-2 overflow-x-auto pb-1"></div>
+      </div>
+    </div>
+
+    <!-- Chart row -->
+    <div class="card p-5">
+      <p class="eyebrow text-[10px] text-walnut mb-3">TEMPERATURE TREND (7 DAYS)</p>
+      <div class="h-52 md:h-64">
+        <canvas id="forecastChart"></canvas>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ── MAP (Google Maps embed) + CONTACT ── -->
+  <section id="contact" data-aos="fade-up">
+    <div class="flex items-center gap-3 mb-3">
+      <span class="eyebrow text-[11px] text-walnut">11 — CONTACT</span>
+      <span class="flex-1 h-px bg-walnut/25"></span>
+    </div>
+    <h3 class="font-display text-2xl md:text-4xl font-semibold mb-6">How to Reach KVK Gurez</h3>
+    <div class="grid md:grid-cols-2 gap-6">
+
+      <div class="space-y-6">
+        <div class="card p-6">
+          <h4 class="font-display font-semibold flex items-center gap-2 mb-3">
+            <i class="fa-solid fa-location-dot text-walnut" aria-hidden="true"></i> Location &amp; Directions
+          </h4>
+          <p class="text-xs font-mono text-slate mb-3">Lat 34.633964 &bull; Lon 74.839485</p>
+          <ul class="space-y-2 text-sm text-slate">
+            <li class="flex gap-2"><i class="fa-solid fa-circle-dot text-walnut mt-0.5 shrink-0" aria-hidden="true"></i>Nearest town: Bandipora — approx. 120 km by mountain road.</li>
+            <li class="flex gap-2"><i class="fa-solid fa-circle-dot text-walnut mt-0.5 shrink-0" aria-hidden="true"></i>Nearest airport: Srinagar (Sheikh ul-Alam), then road via Bandipora to Gurez.</li>
+            <li class="flex gap-2"><i class="fa-solid fa-circle-dot text-walnut mt-0.5 shrink-0" aria-hidden="true"></i>Public transport is limited — coordinate with local authorities or visit during scheduled programmes.</li>
+          </ul>
+          <p class="text-xs text-walnut-dark mt-3 flex gap-1.5">
+            <i class="fa-solid fa-triangle-exclamation mt-0.5" aria-hidden="true"></i>
+            Check travel advisories in winter — road closures occur during heavy snowfall.
+          </p>
+        </div>
+
+        <div class="card p-6">
+          <h4 class="font-display font-semibold mb-3">Get in Touch</h4>
+          <ul class="space-y-3 text-sm text-slate">
+            <li><a href="mailto:kvkgurez@gmail.com" class="inline-flex items-center gap-2 hover:text-pine transition-colors">
+              <span class="w-8 h-8 rounded-full bg-mist flex items-center justify-center shrink-0"><i class="fa-solid fa-envelope text-pine text-xs" aria-hidden="true"></i></span>
+              kvkgurez@gmail.com
+            </a></li>
+            <li><a href="tel:+919103862673" class="inline-flex items-center gap-2 hover:text-pine transition-colors">
+              <span class="w-8 h-8 rounded-full bg-mist flex items-center justify-center shrink-0"><i class="fa-solid fa-phone text-pine text-xs" aria-hidden="true"></i></span>
+              +91-9103862673
+            </a></li>
+            <li><a href="https://wa.me/919103862673" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 hover:text-pine transition-colors">
+              <span class="w-8 h-8 rounded-full bg-mist flex items-center justify-center shrink-0"><i class="fa-brands fa-whatsapp text-pine text-xs" aria-hidden="true"></i></span>
+              Chat on WhatsApp
+            </a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Google Maps embed -->
+      <div class="card p-0 overflow-hidden rounded-2xl shadow">
+        <iframe
+          title="KVK Gurez on Google Maps"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3271.5!2d74.839485!3d34.633964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDM4JzAyLjMiTiA3NMKwNTAnMjIuMiJF!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+          width="100%"
+          height="380"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ══════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════ -->
+<div class="max-w-7xl mx-auto px-4" aria-hidden="true">
+  <svg viewBox="0 0 1440 40" preserveAspectRatio="none" class="w-full h-5 text-walnut/25">
+    <path d="M0,28 L120,12 L240,30 L360,8 L480,26 L600,10 L720,28 L840,6 L960,24 L1080,12 L1200,28 L1320,14 L1440,26" fill="none" stroke="currentColor" stroke-width="1.5"/>
+  </svg>
+</div>
+
+<footer class="bg-pine-dark text-canvas py-8">
+  <div class="max-w-7xl mx-auto px-4 text-center">
+    <div class="flex justify-center gap-4 mb-4">
+      <a href="https://icar.org.in/" target="_blank" rel="noopener noreferrer">
+        <img src="images/Icarlogo.png" alt="ICAR logo" class="h-12 w-auto bg-white p-1 rounded-lg shadow" onerror="this.style.display='none'">
+      </a>
+      <a href="https://skuastkashmir.ac.in/" target="_blank" rel="noopener noreferrer">
+        <img src="images/Skuastklogo.jpg" alt="SKUAST-K logo" class="h-12 w-auto bg-white p-1 rounded-lg shadow" onerror="this.style.display='none'">
+      </a>
+    </div>
+    <p class="text-sm">&copy; <span id="year"></span> Krishi Vigyan Kendra Gurez — SKUAST-Kashmir</p>
+    <p class="text-xs text-canvas/50 mt-1 font-mono">Last updated: <span id="last-updated"></span></p>
+  </div>
+</footer>
+
+<!-- Back to top -->
+<button id="back-to-top" aria-label="Back to top"
+        class="fixed bottom-5 right-5 z-40 hidden h-11 w-11 items-center justify-center rounded-full bg-pine text-canvas shadow-lg hover:bg-pine-dark transition-colors">
+  <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+</button>
+
+<!-- ══════════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════════ -->
+<script>
+/* ── INIT ── */
+document.getElementById('year').textContent         = new Date().getFullYear();
+document.getElementById('last-updated').textContent = new Date().toLocaleDateString();
+AOS.init({ duration:700, once:true, disable:()=>window.matchMedia('(prefers-reduced-motion:reduce)').matches });
+GLightbox({ selector:'.glightbox' });
+
+/* ── HERO SLIDER ── */
+(function(){
+  const slides   = document.querySelectorAll('.slide');
+  const dotsWrap = document.querySelector('.slide-dots');
+  let current    = 0;
+
+
+
+  // Build dots
+  slides.forEach((_,i)=>{
+    const b = document.createElement('button');
+    b.className = 'slide-dot' + (i===0?' active':'');
+    b.setAttribute('role','tab');
+    b.setAttribute('aria-selected', i===0 ? 'true':'false');
+    b.setAttribute('aria-label','Slide '+(i+1));
+    b.addEventListener('click',()=>goTo(i));
+    dotsWrap.appendChild(b);
+  });
+
+  function goTo(n){
+    slides[current].classList.remove('active');
+    dotsWrap.children[current].classList.remove('active');
+    dotsWrap.children[current].setAttribute('aria-selected','false');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotsWrap.children[current].classList.add('active');
+    dotsWrap.children[current].setAttribute('aria-selected','true');
+  }
+
+  // Keyboard left/right
+  document.addEventListener('keydown', e=>{
+    if(e.key==='ArrowRight') goTo(current+1);
+    if(e.key==='ArrowLeft')  goTo(current-1);
+  });
+
+  document.getElementById('slide-next').addEventListener('click',()=>{ goTo(current+1); resetTimer(); });
+  document.getElementById('slide-prev').addEventListener('click',()=>{ goTo(current-1); resetTimer(); });
+  dotsWrap.addEventListener('click', ()=>resetTimer());
+
+  // 10-second auto-advance
+  let timer = null;
+  function resetTimer(){
+    clearInterval(timer);
+    timer = setInterval(()=>goTo(current+1), 10000);
+  }
+
+  // Pause on hover
+  const slider = document.getElementById('hero-slider');
+  slider.addEventListener('mouseenter', ()=>clearInterval(timer));
+  slider.addEventListener('mouseleave', ()=>resetTimer());
+
+  // Start timer
+  resetTimer();
+})();
+
+/* ── MOBILE NAV ── */
+const navToggle = document.getElementById('nav-toggle');
+const navLinks  = document.getElementById('nav-links');
+navToggle.addEventListener('click',()=>{
+  const opening = navLinks.classList.contains('hidden');
+  navLinks.classList.toggle('hidden');
+  navToggle.setAttribute('aria-expanded', String(opening));
+  navToggle.innerHTML = opening
+    ? '<i class="fa-solid fa-xmark text-xl" aria-hidden="true"></i>'
+    : '<i class="fa-solid fa-bars  text-xl" aria-hidden="true"></i>';
+});
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  if(window.matchMedia('(max-width:767px)').matches){
+    navLinks.classList.add('hidden');
+    navToggle.setAttribute('aria-expanded','false');
+    navToggle.innerHTML='<i class="fa-solid fa-bars text-xl" aria-hidden="true"></i>';
+  }
+}));
+
+/* ── ACTIVE NAV ON SCROLL ── */
+(function(){
+  const sections = document.querySelectorAll('section[id], div[id="home"]');
+  const navAs = document.querySelectorAll('nav a[href^="#"]');
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){
+        navAs.forEach(a=>a.classList.remove('active'));
+        const match = document.querySelector('nav a[href="#'+en.target.id+'"]');
+        if(match) match.classList.add('active');
+      }
+    });
+  },{rootMargin:'-40% 0px -55% 0px'});
+  sections.forEach(s=>obs.observe(s));
+})();
+
+/* ── BACK TO TOP ── */
+const btt = document.getElementById('back-to-top');
+window.addEventListener('scroll',()=>{
+  const s = window.scrollY>400;
+  btt.classList.toggle('hidden',!s);
+  btt.classList.toggle('flex',s);
+});
+btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+/* ── NOTICE TICKER ── */
+const notices = [
+  {text:'Soil testing now available — bring samples to the KVK lab',            link:'#contact'},
+  {text:'Kharif season advisory on maize and fodder crops available on request', link:'#'},
+  {text:'Seed &amp; planting-material distribution — contact KVK for details',  link:'#contact'},
+  {text:'Kisan Mela dates announced on our social channels — follow for updates',link:'#'},
+  {text:'Training on integrated pest management — register via WhatsApp',        link:'#contact'},
+];
+document.getElementById('notice-ticker').innerHTML =
+  notices.map(n=>`<a href="${n.link}" class="inline-block mr-12 hover:text-pine hover:underline">${n.text}</a>`).join('');
+document.getElementById('news-updated').textContent = new Date().toLocaleDateString();
+
+/* ── GALLERY FILTER ── */
+document.querySelectorAll('.gallery-filter').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.gallery-filter').forEach(b=>{
+      b.classList.remove('active','bg-pine','text-white');
+      b.classList.add('bg-mist','text-ink');
+    });
+    btn.classList.add('active','bg-pine','text-white');
+    btn.classList.remove('bg-mist','text-ink');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('#gallery-grid a').forEach(item=>{
+      item.style.display = (f==='all'||item.dataset.cat===f) ? '' : 'none';
+    });
+  });
+});
+
+/* ── WEATHER ── */
+const LAT=34.633964, LON=74.839485;
+let fChart=null;
+
+const WMO={
+  0:['Clear sky','fa-sun','#f5c842'],
+  1:['Mainly clear','fa-sun','#f5c842'],
+  2:['Partly cloudy','fa-cloud-sun','#aab4be'],
+  3:['Overcast','fa-cloud','#90a0a8'],
+  45:['Fog','fa-smog','#b0b8c0'],48:['Freezing fog','fa-smog','#b0b8c0'],
+  51:['Light drizzle','fa-cloud-rain','#7ba7bc'],53:['Drizzle','fa-cloud-rain','#7ba7bc'],55:['Dense drizzle','fa-cloud-rain','#7ba7bc'],
+  61:['Light rain','fa-cloud-rain','#4a90d9'],63:['Rain','fa-cloud-rain','#4a90d9'],65:['Heavy rain','fa-cloud-showers-heavy','#2c6fa8'],
+  71:['Light snow','fa-snowflake','#a8d8f0'],73:['Snow','fa-snowflake','#7ec8e3'],75:['Heavy snow','fa-snowflake','#5ab0d4'],
+  77:['Snow grains','fa-snowflake','#a8d8f0'],
+  80:['Showers','fa-cloud-rain','#4a90d9'],81:['Showers','fa-cloud-rain','#4a90d9'],82:['Violent showers','fa-cloud-showers-heavy','#2c6fa8'],
+  85:['Snow showers','fa-snowflake','#7ec8e3'],86:['Heavy snow showers','fa-snowflake','#5ab0d4'],
+  95:['Thunderstorm','fa-bolt','#f0c030'],96:['Thunderstorm+Hail','fa-bolt','#f0c030'],99:['Thunderstorm+Hail','fa-bolt','#f0c030']
+};
+function wmo(c){ return WMO[c]||['Unknown','fa-cloud','#aaa']; }
+
+function windDir(deg){
+  const dirs=['N','NE','E','SE','S','SW','W','NW'];
+  return dirs[Math.round(deg/45)%8];
+}
+
+async function fetchWeather(){
+  const wCur = document.getElementById('w-current');
+  const wStats = document.getElementById('w-stats');
+  const wRefresh = document.getElementById('w-refresh');
+  // Show spinner on refresh button while loading
+  if(wRefresh) wRefresh.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-xs"></i>';
+  // If no data loaded yet, show placeholder
+  if(wCur && !wCur.querySelector('.font-display')) {
+    wCur.innerHTML = '<div class="eyebrow text-[10px] text-walnut animate-pulse">Loading weather…</div>';
+  }
+
+  try{
+    // New Open-Meteo API (current_weather deprecated — use current= instead)
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}`
+      + `&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,windspeed_10m,winddirection_10m,precipitation`
+      + `&daily=temperature_2m_max,temperature_2m_min,weather_code,precipitation_sum,windspeed_10m_max,sunrise,sunset`
+      + `&timezone=Asia%2FKolkata&forecast_days=7`;
+
+    const r = await fetch(url);
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    const d = await r.json();
+
+    const cur = d.current;
+    const daily = d.daily;
+    if(!cur || !daily) throw new Error('No data');
+
+    const curCode = cur.weather_code ?? cur.weathercode ?? 0;
+    const [desc,icon,col] = wmo(curCode);
+    const now = new Date(cur.time);
+
+    // ── Current conditions card ──
+    wCur.innerHTML = `
+      <i class="fa-solid ${icon} text-5xl" style="color:${col}"></i>
+      <div class="font-display text-5xl font-bold text-ink mt-1">
+        ${Math.round(cur.temperature_2m)}<span class="text-xl align-top mt-1 inline-block text-slate">°C</span>
+      </div>
+      <p class="text-sm font-semibold text-slate">${desc}</p>
+      <p class="text-xs text-walnut font-mono">Feels like ${Math.round(cur.apparent_temperature)}°C</p>
+      <p class="text-[10px] text-slate/70 font-mono mt-1">
+        <i class="fa-solid fa-location-dot text-walnut mr-1"></i>Gurez Valley
+        &nbsp;·&nbsp; ${now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})}
+      </p>
+    `;
+
+    // ── Detail stats card ──
+    const todayI = 0;
+    const sunriseT = new Date(daily.sunrise[todayI]).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+    const sunsetT  = new Date(daily.sunset[todayI]).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+    wStats.innerHTML = `
+      <div class="flex items-center gap-1.5 col-span-2">
+        <i class="fa-solid fa-wind text-pine w-4"></i>
+        <span>${cur.windspeed_10m} km/h ${windDir(cur.winddirection_10m)}</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <i class="fa-solid fa-droplet text-blue-400 w-4"></i>
+        <span>${cur.relative_humidity_2m}% RH</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <i class="fa-solid fa-cloud-rain text-slate w-4"></i>
+        <span>${cur.precipitation} mm</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <i class="fa-solid fa-temperature-arrow-up text-red-400 w-4"></i>
+        <span>High ${Math.round(daily.temperature_2m_max[todayI])}°C</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <i class="fa-solid fa-temperature-arrow-down text-blue-400 w-4"></i>
+        <span>Low ${Math.round(daily.temperature_2m_min[todayI])}°C</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <i class="fa-solid fa-sun text-saffron w-4"></i>
+        <span>Rise ${sunriseT}</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <i class="fa-solid fa-moon text-walnut w-4"></i>
+        <span>Set ${sunsetT}</span>
+      </div>
+    `;
+
+    // ── 7-day forecast mini cards ──
+    const fd = document.getElementById('forecast-days');
+    fd.innerHTML = '';
+    daily.time.forEach((t,i)=>{
+      const dayCode = (daily.weather_code ?? daily.weathercode ?? [])[i] ?? 0;
+      const [,fi,fc] = wmo(dayCode);
+      const dayStr = new Date(t).toLocaleDateString('en-IN',{weekday:'short',day:'numeric'});
+      const isToday = i===0;
+      fd.innerHTML += `
+        <div class="weather-day shrink-0 ${isToday?'ring-2 ring-pine/40':''}">
+          <p class="eyebrow text-[9px] text-slate leading-tight">${isToday?'Today':dayStr.split(' ')[0]}</p>
+          <p class="text-[9px] text-slate/60">${dayStr.split(' ')[1]||''}</p>
+          <i class="fa-solid ${fi} text-lg my-1 block" style="color:${fc}"></i>
+          <p class="text-xs font-bold text-ink">${Math.round(daily.temperature_2m_max[i])}°</p>
+          <p class="text-[10px] text-slate">${Math.round(daily.temperature_2m_min[i])}°</p>
+          <p class="text-[9px] text-blue-400 mt-0.5">${daily.precipitation_sum[i]>0?daily.precipitation_sum[i]+'mm':''}</p>
+        </div>`;
+    });
+
+    // ── Temperature chart ──
+    const chartLabels = daily.time.map(t=>new Date(t).toLocaleDateString('en-IN',{weekday:'short',day:'numeric'}));
+    const ctx = document.getElementById('forecastChart').getContext('2d');
+    if(fChart){ fChart.destroy(); }
+    fChart = new Chart(ctx,{
+      type:'line',
+      data:{
+        labels: chartLabels,
+        datasets:[
+          {
+            label:'Max °C', data:daily.temperature_2m_max,
+            borderColor:'#2D5340', backgroundColor:'rgba(45,83,64,0.12)',
+            fill:true, tension:.4, pointBackgroundColor:'#2D5340', pointRadius:5, pointHoverRadius:7
+          },
+          {
+            label:'Min °C', data:daily.temperature_2m_min,
+            borderColor:'#A06A3C', backgroundColor:'rgba(160,106,60,0.08)',
+            fill:true, tension:.4, pointBackgroundColor:'#A06A3C', pointRadius:5, pointHoverRadius:7
+          }
+        ]
+      },
+      options:{
+        responsive:true, maintainAspectRatio:false,
+        interaction:{ mode:'index', intersect:false },
+        plugins:{
+          legend:{ position:'bottom', labels:{ usePointStyle:true, pointStyle:'circle', padding:16, font:{size:12} } },
+          tooltip:{
+            backgroundColor:'#21302A', titleColor:'#F0BB6E', bodyColor:'#EAEFE3',
+            padding:12, cornerRadius:10,
+            callbacks:{ label: c=>' '+c.dataset.label+': '+c.parsed.y+'°C' }
+          }
+        },
+        scales:{
+          x:{ grid:{color:'rgba(94,109,99,.10)'}, ticks:{color:'#5E6D63',font:{size:11}} },
+          y:{ grid:{color:'rgba(94,109,99,.10)'}, ticks:{color:'#5E6D63',font:{size:11},callback:v=>v+'°C'} }
+        }
+      }
+    });
+
+    // Restore refresh button
+    const btn = document.getElementById('w-refresh');
+    if(btn) btn.innerHTML = '<i class="fa-solid fa-rotate-right"></i>';
+
+  }catch(e){
+    console.error('Weather error:',e);
+    if(wCur) wCur.innerHTML=`
+      <i class="fa-solid fa-triangle-exclamation text-walnut text-3xl mb-2"></i>
+      <p class="text-sm text-slate font-semibold">Weather unavailable</p>
+      <p class="text-xs text-slate mt-1">${e.message}</p>
+      <button onclick="fetchWeather()" class="mt-3 px-4 py-1.5 rounded-full bg-pine text-white text-xs font-semibold hover:bg-pine-dark transition-colors">
+        <i class="fa-solid fa-rotate-right mr-1"></i>Retry
+      </button>`;
+    const btn2 = document.getElementById('w-refresh');
+    if(btn2) btn2.innerHTML = '<i class="fa-solid fa-rotate-right"></i>';
+  }
+}
+fetchWeather();
+setInterval(fetchWeather, 30*60*1000);
+
+/* ── IMAGE FADE-IN ON LOAD ── */
+document.querySelectorAll('.event-img').forEach(img=>{
+  if(img.complete) img.classList.add('loaded');
+  else img.addEventListener('load',()=>img.classList.add('loaded'));
+});
+</script>
+</body>
+</html>
