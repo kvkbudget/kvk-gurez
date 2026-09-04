@@ -48,6 +48,8 @@
     :focus-visible{outline:3px solid #DD9A33;outline-offset:2px;border-radius:4px}
     .machine-icon{background:#EAEFE3;color:#2D5340}
     .rate-box{background:linear-gradient(135deg,#F6F2E8,#EAEFE3)}
+    .gallery-img{aspect-ratio:4/3;object-fit:cover}
+.gallery-cap{position:absolute;inset:auto 0 0 0;background:linear-gradient(0deg,rgba(30,58,44,.88),rgba(30,58,44,0));color:#fff;padding:1.5rem .9rem .7rem}
     .modal-bg{background:rgba(30,58,44,.72);backdrop-filter:blur(4px)}
     .urdu{ font-family:'Noto Nastaliq Urdu',serif; font-weight:600; }
     .socials a{ display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; border-radius:7px; color:#fff; background:rgba(255,255,255,.1); transition:all .2s; }
@@ -123,6 +125,7 @@
       <ul class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row md:flex-wrap gap-x-5 gap-y-0 py-1 md:py-2 text-xs font-bold uppercase tracking-widest">
         <li><a href="index.html"    class="block py-2.5 md:py-1.5 hover:text-saffron-light transition-colors">Home</a></li>
         <li><a href="#machinery"    class="block py-2.5 md:py-1.5 hover:text-saffron-light transition-colors">Machinery</a></li>
+        <li><a href="#gallery"      class="block py-2.5 md:py-1.5 hover:text-saffron-light transition-colors">Gallery</a></li>
         <li><a href="#rates"        class="block py-2.5 md:py-1.5 hover:text-saffron-light transition-colors">Rates</a></li>
         <li><a href="#booking"      class="block py-2.5 md:py-1.5 hover:text-saffron-light transition-colors">Booking</a></li>
         <li><a href="#contact"      class="block py-2.5 md:py-1.5 hover:text-saffron-light transition-colors">Contact</a></li>
@@ -133,8 +136,9 @@
 
   <!-- Hero -->
   <section class="relative overflow-hidden">
-    <div class="absolute inset-0 bg-cover bg-center opacity-20"
-         style="background-image:url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1800&auto=format&fit=crop')"></div>
+    <div class="absolute inset-0 bg-cover bg-center opacity-25"
+     style="background-image:url('images/chc-banner-machinery.jpg')"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-canvas/40 via-canvas/70 to-canvas"></div>
     <div class="relative max-w-7xl mx-auto px-4 py-16 md:py-24 text-center">
       <p class="eyebrow text-xs uppercase text-walnut mb-4">SKUAST-Kashmir · ICAR · Gurez Valley</p>
       <h2 class="font-display text-4xl md:text-6xl font-semibold leading-tight">
@@ -188,7 +192,60 @@
 
       <div id="machineGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </section>
+<!-- Gallery: CHC in action -->
+<section id="gallery">
+  <div class="flex items-center gap-3 mb-3">
+    <span class="eyebrow text-xs text-walnut">02 — GALLERY</span>
+    <span class="flex-1 h-px bg-walnut/25"></span>
+  </div>
+  <h2 class="font-display text-3xl md:text-4xl font-semibold mb-2">CHC in Action</h2>
+  <p class="text-slate mb-7 max-w-3xl">A look at CHC machinery at work in the fields of Gurez Valley, operated by our farmers.</p>
 
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <figure class="card overflow-hidden card-hover relative">
+      <img src="images/farmer-weeder-achoora.jpg" alt="Farmer using CHC power weeder at Achoora, Gurez Valley" class="w-full gallery-img">
+      <figcaption class="gallery-cap">
+        <p class="font-semibold text-sm">Power Weeder in Use</p>
+        <p class="text-xs text-white/80">Achoora, Gurez Valley</p>
+      </figcaption>
+    </figure>
+    <figure class="card overflow-hidden card-hover relative">
+      <img src="images/farmer-tiller-sandiyal.jpg" alt="Farmer using CHC power tiller at Sandiyal Chorwan, Gurez Valley" class="w-full gallery-img">
+      <figcaption class="gallery-cap">
+        <p class="font-semibold text-sm">Power Tiller Field Preparation</p>
+        <p class="text-xs text-white/80">Sandiyal Chorwan, Gurez Valley</p>
+      </figcaption>
+    </figure>
+    <figure class="card overflow-hidden card-hover relative">
+      <img src="images/farmer-tractor-izmarg.jpg" alt="Farmer using CHC tractor at Izmarg, Gurez Valley" class="w-full gallery-img">
+      <figcaption class="gallery-cap">
+        <p class="font-semibold text-sm">Tractor Ploughing</p>
+        <p class="text-xs text-white/80">Izmarg, Gurez Valley</p>
+      </figcaption>
+    </figure>
+    <figure class="card overflow-hidden card-hover relative">
+      <img src="images/farmer-tractor-markoot.jpg" alt="Farmer using CHC tractor with cultivator at Markoot, Gurez Valley" class="w-full gallery-img">
+      <figcaption class="gallery-cap">
+        <p class="font-semibold text-sm">Tractor with Cultivator</p>
+        <p class="text-xs text-white/80">Markoot, Gurez Valley</p>
+      </figcaption>
+    </figure>
+    <figure class="card overflow-hidden card-hover relative">
+      <img src="images/farmer-tiller-shahpora.jpg" alt="Farmer using CHC power tiller at Shah Pora, Gurez Valley" class="w-full gallery-img">
+      <figcaption class="gallery-cap">
+        <p class="font-semibold text-sm">Power Tiller in the Field</p>
+        <p class="text-xs text-white/80">Shah Pora, Gurez Valley</p>
+      </figcaption>
+    </figure>
+    <figure class="card overflow-hidden card-hover relative">
+      <img src="images/chc-banner-machinery.jpg" alt="CHC implements and mini tractor available for hire" class="w-full gallery-img">
+      <figcaption class="gallery-cap">
+        <p class="font-semibold text-sm">CHC Implements &amp; Machinery</p>
+        <p class="text-xs text-white/80">Available at KVK Gurez</p>
+      </figcaption>
+    </figure>
+  </div>
+</section>
     <!-- Rates -->
     <section id="rates">
       <div class="flex items-center gap-3 mb-3">
