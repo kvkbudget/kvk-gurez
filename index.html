@@ -70,7 +70,8 @@
     .event-img[loading]{ opacity:0; }
     .event-img.loaded{ opacity:1; }
     .eyebrow{ font-family:'IBM Plex Mono',monospace; letter-spacing:.2em; }
-
+.scrollbar-hide::-webkit-scrollbar{ display:none; }
+.scrollbar-hide{ -ms-overflow-style:none; scrollbar-width:none; }
     /* ── HERO SLIDER ── */
     #hero-slider { position:relative; overflow:hidden; height:460px; }
     @media(min-width:768px){ #hero-slider { height:620px; } }
@@ -879,40 +880,38 @@
       <span class="flex-1 h-px bg-walnut/25"></span>
     </div>
     <h3 class="font-display text-2xl md:text-4xl font-semibold mb-6">Publications &amp; Downloads</h3>
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="card card-hover p-5 flex flex-col">
-        <div class="w-10 h-10 rounded-lg bg-red-50 text-red-500 flex items-center justify-center mb-3">
-          <i class="fa-solid fa-file-pdf text-xl" aria-hidden="true"></i>
+
+    <div class="flex gap-5 overflow-x-auto pb-4 -mx-4 px-4 snap-x snap-mandatory scrollbar-hide">
+
+      <a href="documents/MAPs-Booklet.pdf" target="_blank" rel="noopener noreferrer" class="snap-start shrink-0 w-40 md:w-44 card card-hover overflow-hidden group">
+        <div class="aspect-[3/4] bg-parchment flex items-center justify-center overflow-hidden">
+          <img src="images/pub-maps-cover.jpg" alt="MAPs booklet cover"
+               class="w-full h-full object-cover" loading="lazy"
+               onerror="this.parentElement.innerHTML='<i class=\'fa-solid fa-file-pdf text-4xl text-red-400\'></i>'">
         </div>
-        <h4 class="font-display font-semibold">Annual Report 2024-25</h4>
-        <p class="text-sm text-slate mt-1 flex-1">Summary of all activities and outcomes for 2024-25.</p>
-        <a href="#" class="mt-4 inline-flex items-center gap-2 text-pine font-semibold text-sm hover:text-pine-dark transition-colors">
-          <i class="fa-solid fa-download" aria-hidden="true"></i> Download PDF
-        </a>
-      </div>
-      <div class="card card-hover p-5 flex flex-col">
-        <div class="w-10 h-10 rounded-lg bg-red-50 text-red-500 flex items-center justify-center mb-3">
-          <i class="fa-solid fa-file-pdf text-xl" aria-hidden="true"></i>
+        <p class="text-sm font-semibold p-3 leading-snug">MAPs — Farm Profile</p>
+      </a>
+
+      <a href="documents/Buckwheat-Booklet.pdf" target="_blank" rel="noopener noreferrer" class="snap-start shrink-0 w-40 md:w-44 card card-hover overflow-hidden group">
+        <div class="aspect-[3/4] bg-parchment flex items-center justify-center overflow-hidden">
+          <img src="images/pub-buckwheat-cover.jpg" alt="Buckwheat booklet cover"
+               class="w-full h-full object-cover" loading="lazy"
+               onerror="this.parentElement.innerHTML='<i class=\'fa-solid fa-file-pdf text-4xl text-red-400\'></i>'">
         </div>
-        <h4 class="font-display font-semibold">Extension Bulletin: Maize</h4>
-        <p class="text-sm text-slate mt-1 flex-1">Best practices for maize cultivation in cold-climate conditions.</p>
-        <a href="#" class="mt-4 inline-flex items-center gap-2 text-pine font-semibold text-sm hover:text-pine-dark transition-colors">
-          <i class="fa-solid fa-download" aria-hidden="true"></i> Download PDF
-        </a>
-      </div>
-      <div class="card card-hover p-5 flex flex-col">
-        <div class="w-10 h-10 rounded-lg bg-red-50 text-red-500 flex items-center justify-center mb-3">
-          <i class="fa-solid fa-file-pdf text-xl" aria-hidden="true"></i>
+        <p class="text-sm font-semibold p-3 leading-snug">Revival of Heritage Crop: Buckwheat</p>
+      </a>
+
+      <a href="documents/Soil-Sampling-Booklet.pdf" target="_blank" rel="noopener noreferrer" class="snap-start shrink-0 w-40 md:w-44 card card-hover overflow-hidden group">
+        <div class="aspect-[3/4] bg-parchment flex items-center justify-center overflow-hidden">
+          <img src="images/pub-soilsampling-cover.jpg" alt="Soil Sampling poster cover"
+               class="w-full h-full object-cover" loading="lazy"
+               onerror="this.parentElement.innerHTML='<i class=\'fa-solid fa-file-pdf text-4xl text-red-400\'></i>'">
         </div>
-        <h4 class="font-display font-semibold">Guidelines: Fodder Management</h4>
-        <p class="text-sm text-slate mt-1 flex-1">A practical guide for smallholder farmers on fodder cultivation.</p>
-        <a href="#" class="mt-4 inline-flex items-center gap-2 text-pine font-semibold text-sm hover:text-pine-dark transition-colors">
-          <i class="fa-solid fa-download" aria-hidden="true"></i> Download PDF
-        </a>
-      </div>
+        <p class="text-sm font-semibold p-3 leading-snug">Soil Sampling — Techniques &amp; Precautions</p>
+      </a>
+
     </div>
   </section>
-  
 
   <!-- ── GALLERY (12 photos) ── -->
   <section id="gallery" data-aos="fade-up">
