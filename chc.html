@@ -281,6 +281,13 @@
                 <label class="block text-sm font-semibold mb-2" for="mobile">Mobile Number *</label>
                 <input id="mobile" name="mobile" required type="tel" pattern="[0-9+ ()-]{10,15}" class="w-full rounded-lg border border-slate/20 px-4 py-3 bg-white focus:border-pine" placeholder="10-digit mobile number">
               </div>
+              <div>
+  <label class="block text-sm font-semibold mb-2" for="aadhar">Aadhaar Number *</label>
+  <input id="aadhar" name="aadhar" required type="text" inputmode="numeric"
+         pattern="[0-9]{12}" maxlength="12"
+         class="w-full rounded-lg border border-slate/20 px-4 py-3 bg-white focus:border-pine"
+         placeholder="12-digit Aadhaar number">
+</div>
             </div>
 
             <div class="grid md:grid-cols-2 gap-5">
@@ -288,6 +295,15 @@
                 <label class="block text-sm font-semibold mb-2" for="village">Village *</label>
                 <input id="village" name="village" required class="w-full rounded-lg border border-slate/20 px-4 py-3" placeholder="Village">
               </div>
+              <div class="grid md:grid-cols-2 gap-5">
+  <div>
+    <label class="block text-sm font-semibold mb-2" for="aadhar">Aadhaar Number *</label>
+    <input id="aadhar" name="aadhar" required type="text" inputmode="numeric"
+           pattern="[0-9]{12}" maxlength="12"
+           class="w-full rounded-lg border border-slate/20 px-4 py-3 bg-white focus:border-pine"
+           placeholder="12-digit Aadhaar number">
+  </div>
+</div>
               <div>
                 <label class="block text-sm font-semibold mb-2" for="date">Required Date *</label>
                 <input id="date" name="date" required type="date" class="w-full rounded-lg border border-slate/20 px-4 py-3">
@@ -585,6 +601,7 @@
       // Field names below match the Firestore security rules.
       const booking = {
         farmerName: data.farmerName.trim(),
+        aadhar: data.aadhar.trim(),
         mobile: data.mobile.trim(),
         village: data.village.trim(),
         machinery: m.name,
@@ -611,6 +628,7 @@
           await emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, {
             bookingId: docRef.id,
             farmerName: booking.farmerName,
+            aadhar: booking.aadhar,
             mobile: booking.mobile,
             village: booking.village,
             machinery: booking.machinery,
