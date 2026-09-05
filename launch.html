@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
 
   <title>KVK Gurez | Website Launch</title>
 
@@ -74,8 +75,6 @@
       border-left: 5px solid #d5a43b;
     }
 
-    /* Curtain folds */
-
     .curtain::before {
       content: "";
       position: absolute;
@@ -121,7 +120,7 @@
     .launch-content {
       position: absolute;
       inset: 0;
-      z-index: 5;
+      z-index: 30;
 
       display: flex;
       flex-direction: column;
@@ -213,8 +212,6 @@
       transform: scale(.96);
     }
 
-    /* Button shine */
-
     .launch-button::after {
       content: "";
 
@@ -233,13 +230,8 @@
     }
 
     @keyframes shine {
-      0% {
-        left: -100%;
-      }
-
-      50%,100% {
-        left: 150%;
-      }
+      0% { left: -100%; }
+      50%,100% { left: 150%; }
     }
 
     /* =========================
@@ -248,30 +240,17 @@
 
     .sparkle {
       position: absolute;
-
       width: 5px;
       height: 5px;
-
       background: #f5d36a;
-
       border-radius: 50%;
-
-      box-shadow:
-        0 0 12px #f5d36a;
-
+      box-shadow: 0 0 12px #f5d36a;
       animation: sparkle 2s infinite ease-in-out;
     }
 
     @keyframes sparkle {
-      0%,100% {
-        opacity: .2;
-        transform: scale(.5);
-      }
-
-      50% {
-        opacity: 1;
-        transform: scale(1.6);
-      }
+      0%,100% { opacity: .2; transform: scale(.5); }
+      50% { opacity: 1; transform: scale(1.6); }
     }
 
     .s1 { top: 20%; left: 20%; }
@@ -301,29 +280,11 @@
     ========================= */
 
     @media (max-width: 600px) {
-
-      .small-title {
-        font-size: 13px;
-        letter-spacing: 2px;
-      }
-
-      .main-title {
-        font-size: 30px;
-        line-height: 1.2;
-      }
-
-      .subtitle {
-        font-size: 15px;
-      }
-
-      .meeting {
-        font-size: 14px;
-      }
-
-      .launch-button {
-        padding: 15px 28px;
-        font-size: 16px;
-      }
+      .small-title { font-size: 13px; letter-spacing: 2px; }
+      .main-title { font-size: 30px; line-height: 1.2; }
+      .subtitle { font-size: 15px; }
+      .meeting { font-size: 14px; }
+      .launch-button { padding: 15px 28px; font-size: 16px; }
     }
 
     /* =========================
@@ -331,15 +292,9 @@
     ========================= */
 
     @media (prefers-reduced-motion: reduce) {
-
-      .curtain {
-        transition-duration: .5s;
-      }
-
+      .curtain { transition-duration: .5s; }
       .launch-button::after,
-      .sparkle {
-        animation: none;
-      }
+      .sparkle { animation: none; }
     }
   </style>
 </head>
@@ -348,71 +303,82 @@
 
   <div class="launch-screen" id="launchScreen">
 
-    <!-- Golden top rod -->
     <div class="curtain-rod"></div>
-
-    <!-- Left Curtain -->
     <div class="curtain curtain-left"></div>
-
-    <!-- Right Curtain -->
     <div class="curtain curtain-right"></div>
 
-    <!-- Sparkles -->
     <span class="sparkle s1"></span>
     <span class="sparkle s2"></span>
     <span class="sparkle s3"></span>
     <span class="sparkle s4"></span>
 
-    <!-- Center Content -->
     <div class="launch-content">
+      <div class="small-title">Welcome to</div>
+      <h1 class="main-title">KRISHI VIGYAN KENDRA GUREZ</h1>
+      <div class="subtitle">Official Website Launch</div>
+      <div class="meeting">5th SAC Meeting</div>
 
-      <div class="small-title">
-        Welcome to
-      </div>
-
-      <h1 class="main-title">
-        KRISHI VIGYAN KENDRA GUREZ
-      </h1>
-
-      <div class="subtitle">
-        Official Website Launch
-      </div>
-
-      <div class="meeting">
-        5th SAC Meeting
-      </div>
-
-      <button
-        class="launch-button"
-        onclick="launchWebsite()">
-
+      <button class="launch-button" onclick="launchWebsite()">
         🌐 &nbsp; LAUNCH WEBSITE
-
       </button>
-
     </div>
 
   </div>
 
-
   <script>
+    /* ============================================================
+       CONFIG — change these two values for your event
+       ============================================================ */
+    const EVENT_DATE   = '2026-09-06';   // the ONE day this splash is allowed to show (YYYY-MM-DD)
+    const REDIRECT_URL = 'index.html';   // your real website homepage
+    const STORAGE_KEY  = 'kvkGurezLaunchSeen';
 
-    function launchWebsite() {
-
-      const screen = document.getElementById("launchScreen");
-
-      // Open curtains
-      screen.classList.add("open");
-
-      // After curtain animation, open actual website
-      setTimeout(function () {
-
-        window.location.href = "index.html";
-
-      }, 2100);
-
+    /* ============================================================
+       RESET OPTION
+       Visit this same file with ?reset=true in the URL, e.g.
+       launch.html?reset=true
+       This clears the "already seen" flag so the splash can show
+       again (useful for testing, or re-running the ceremony).
+       ============================================================ */
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('reset') === 'true') {
+      localStorage.removeItem(STORAGE_KEY);
     }
 
+    /* ============================================================
+       DATE + ONE-TIME CHECK
+       If today is not the event date, OR this visitor has already
+       clicked Launch before, skip straight to the real website —
+       no curtain, no delay.
+       ============================================================ */
+    function todayString() {
+      const d = new Date();
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth() + 1).padStart(2, '0');
+      const dd = String(d.getDate()).padStart(2, '0');
+      return `${yyyy}-${mm}-${dd}`;
+    }
+
+    const alreadySeen = localStorage.getItem(STORAGE_KEY) === 'true';
+    const isEventDay  = todayString() === EVENT_DATE;
+
+    if (alreadySeen || !isEventDay) {
+      window.location.replace(REDIRECT_URL);
+    }
+
+    /* ============================================================
+       LAUNCH BUTTON
+       ============================================================ */
+    function launchWebsite() {
+      localStorage.setItem(STORAGE_KEY, 'true');
+
+      const screen = document.getElementById("launchScreen");
+      screen.classList.add("open");
+
+      setTimeout(function () {
+        window.location.href = REDIRECT_URL;
+      }, 2100);
+    }
   </script>
 
 </body>
