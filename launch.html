@@ -325,61 +325,42 @@
 
   </div>
 
-  <script>
-    /* ============================================================
-       CONFIG — change these two values for your event
-       ============================================================ */
-    const EVENT_DATE   = '2026-09-05';   // the ONE day this splash is allowed to show (YYYY-MM-DD)
-    const REDIRECT_URL = 'index.html';   // your real website homepage
-    const STORAGE_KEY  = 'kvkGurezLaunchSeen';
+ <script>
+  const EVENT_START  = '2026-09-05';   // pehla din
+  const EVENT_END    = '2026-09-06';   // doosra din
+  const REDIRECT_URL = 'index.html';
+  const STORAGE_KEY  = 'kvkGurezLaunchSeen';
 
-    /* ============================================================
-       RESET OPTION
-       Visit this same file with ?reset=true in the URL, e.g.
-       launch.html?reset=true
-       This clears the "already seen" flag so the splash can show
-       again (useful for testing, or re-running the ceremony).
-       ============================================================ */
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('reset') === 'true') {
-      localStorage.removeItem(STORAGE_KEY);
-    }
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('reset') === 'true') {
+    localStorage.removeItem(STORAGE_KEY);
+  }
 
-    /* ============================================================
-       DATE + ONE-TIME CHECK
-       If today is not the event date, OR this visitor has already
-       clicked Launch before, skip straight to the real website —
-       no curtain, no delay.
-       ============================================================ */
-    function todayString() {
-      const d = new Date();
-      const yyyy = d.getFullYear();
-      const mm = String(d.getMonth() + 1).padStart(2, '0');
-      const dd = String(d.getDate()).padStart(2, '0');
-      return `${yyyy}-${mm}-${dd}`;
-    }
+  function todayString() {
+    const d = new Date();
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    return `${yyyy}-${mm}-${dd}`;
+  }
 
-    const alreadySeen = localStorage.getItem(STORAGE_KEY) === 'true';
-    const isEventDay  = todayString() === EVENT_DATE;
+  const alreadySeen = localStorage.getItem(STORAGE_KEY) === 'true';
+  const today = todayString();
+  const isEventDay = today >= EVENT_START && today <= EVENT_END;
 
-    if (alreadySeen || !isEventDay) {
-      window.location.replace(REDIRECT_URL);
-    }
+  if (alreadySeen || !isEventDay) {
+    window.location.replace(REDIRECT_URL);
+  }
 
-    /* ============================================================
-       LAUNCH BUTTON
-       ============================================================ */
-    function launchWebsite() {
-      localStorage.setItem(STORAGE_KEY, 'true');
-
-      const screen = document.getElementById("launchScreen");
-      screen.classList.add("open");
-
-      setTimeout(function () {
-        window.location.href = REDIRECT_URL;
-      }, 2100);
-    }
-  </script>
+  function launchWebsite() {
+    localStorage.setItem(STORAGE_KEY, 'true');
+    const screen = document.getElementById("launchScreen");
+    screen.classList.add("open");
+    setTimeout(function () {
+      window.location.href = REDIRECT_URL;
+    }, 2100);
+  }
+</script>
 
 </body>
 </html>
